@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字体订单信息页</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/new_style/base.css">
+    <link rel="stylesheet" href="../../css/28-new-content-detail.css">
+    <link rel="stylesheet" href="../../css/font_product/font-product.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="#" class="logo"></a>
+            <div class="navbar">
+                <div>
+                    <span>首页</span>
+                </div>
+                <div>
+                    <span>学习</span>
+                    <ul class="learn">
+                        <li><a href="#">软件教程</a></li>
+                        <li><a href="#">绘画教程</a></li>
+                        <li><a href="#">基础课程</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>工具</span>
+                    <ul class="tool">
+                        <li><a href="#">优动漫PAINT</a></li>
+                        <li><a href="#">绘画助手</a></li>
+                        <li><a href="#">优漫</a></li>
+                        <li><a href="#">优绘</a></li>
+                        <li><a href="#">优动漫ACTION</a></li>
+                        <li><a href="#">优动漫COORDINATE</a></li>
+                        <li><a href="#">RETAS MASTER</a></li>
+                        <li><a href="#">MODELER</a></li>
+                        <li><a href="#">QUMARION</a></li>
+                        <li><a href="#">巧手</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>素材</span>
+                    <ul class="material">
+                        <li><a href="#">笔刷素材</a></li>
+                        <li><a href="#">图像素材</a></li>
+                        <li><a href="#">自动动作</a></li>
+                        <li><a href="#">笔刷素材</a></li>
+                        <li><a href="#">3D素材</a></li>
+                        <li><a href="#">色板</a></li>
+                        <li><a href="#">工作区</a></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>练习</span>
+                    <ul class="practice">
+                        <li><a href="#">优动漫PAINT练习</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>作品</span>
+                </div>
+                <div>
+                    <span>活动</span>
+                </div>
+            </div>
+            <div class="login-status">
+                <p style="display:none;">登录</p>
+                <p>
+                    <img src="../images/content-detail/none_zuopin.png" alt="">
+                </p>
+            </div>
+            <div class="search_bar">
+                <form action="index.php" method="get" name="side_search" id="side_search"
+                    onsubmit="return check_global_search_form();">
+                    <input type="hidden" value="search" name="m">
+                    <input type="hidden" value="search" name="c">
+                    <input type="hidden" value="searchview" name="a">
+                    <dl class="sim_select">
+                        <input name='search_type' type="hidden" id="searchmodel" value="<?php echo $search_type;?>" />
+                        <dt>教程</dt>
+                        <dd>
+                            <p ddvalue="<?php echo RESOURCE_COURSE_JC_ID;?>">教程</p>
+                            <p ddvalue="<?php echo RESOURCE_COURSE_KC_ID;?>">课程</p>
+                            <p ddvalue="<?php echo RESOURCE_MATERIAL_ID;?>">素材</p>
+                            <p ddvalue="<?php echo RESOURCE_PRACTICE_ID;?>">练习</p>
+                            <p ddvalue="<?php echo RESOURCE_WORK_ID;?>">作品</p>
+                        </dd>
+                    </dl>
+                    <div>
+                        <input type="text" class="input" id="q" name="q" value="{$q}" maxlength="20" />
+                        <input type="submit" class="btn search_btn" value="">
+                    </div>
+                </form>
+            </div>
+        </header>
+        <div class="font-order-info">
+            <div class="font-display font-block-padding">
+                <div class="tit-box font-model">
+                    <h2 class="tit">订单信息</h2>
+                </div>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>商品</th>
+                            <th>授权类型</th>
+                            <th>使用期限</th>
+                            <th>价格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="../../images/pa/shili_3.jpg" alt="">
+                                <span>书正黑体 Regular</span>
+                            </td>
+                            <td>
+                                个人
+                            </td>
+                            <td>
+                                永久
+                            </td>
+                            <td>
+                                ￥99.00
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form id="pay_submit" action="/index.php?m=shop&c=udm_payment&a=create_font_order_and_qrcode_pay" method="post" onsubmit="javascript:return fontUserInfo.toPay();">
+                <div class="font-display font-block-padding font-author-con">
+                    <div class="tit-box font-model">
+                        <h2 class="tit">被授权方信息<span class="font-notice">(为保证您的权益，请认真填写并核对，订单提交后不可再修改)</span></h2>
+                    </div>
+                    <div class="font-form-box">
+                        <div class="form-group">
+                            <label for="name" class="input-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名: </label>
+                            <input type="text" class="nomal-input" id="input_name" maxlength="100">
+                            <span class="nomal-check alipay-name">请输入姓名</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="input-label">身份证号: </label>
+                            <input type="text" class="nomal-input" id="input_identify_code" maxlength="18">
+                            <span class="nomal-check">请输入您的身份证号</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="input-label">企业名称: </label>
+                            <input type="text" class="nomal-input" id="company_name" maxlength="100">
+                            <span class="nomal-check alipay-name">请输入企业名称</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="input-label">企业代码: </label>
+                            <input type="text" class="nomal-input" id="company_code" maxlength="20">
+                            <span class="nomal-check">请输入您的企业代码</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="input-label">手机号码: </label>
+                            <input type="text" class="nomal-input code-input" id="phone_num"  maxlength="11">
+                            <button class="check-btn" id="check_btn" type='button' >获取短信验证码</button>
+                            <span class="nomal-check">请输入手机号码</span>
+                        </div> 
+                        <div id="captcha" style="padding-left: 81px;padding-top: 15px;"></div>
+                        <div class="form-group">
+                            <label for="" class="input-label">验&nbsp;证&nbsp;码: </label>
+                            <input type="text" class="nomal-input" id="phone_num_code"  maxlength="6">
+                            <span class="nomal-check">请输入验证码</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="font-pay-detail">
+                    <p class="font-warning">提示：字体为特殊商品，支付完成后不支持退款。</p>
+                    <div class="font-pay-right goods-amount">
+                       <div>
+                           商品总额：<span class="font-small">￥99.00</span>
+                        </div>
+                    </div>
+                    <div class="font-pay-right amounts-payable">
+                        <div>
+                            应付金额：<span>￥<span class="font-middle">99.00</span></span>
+                        </div>
+                    </div>
+                    <div class="font-pay-right go-to-pay">
+                        <div>
+                            <button id="go_to_pay" type="submit">去支付</button>
+                            <a href="">联系客服</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <div class="footer-box">
+                <div class="bottom-qzone" title="优动漫交流群">
+                <a href="http://shang.qq.com/wpa/qunwpa?idkey=142bed0539fbda43576caf90e45338b2783e4d82ddf9827d806451bb456bc25e"
+                    target="_blank">
+                    <span></span>
+                </a>
+                </div>
+                <div class="bottom-weibo" title="优动漫官微">
+                <a href="http://weibo.com/udongman?topnav=1&amp;wvr=6&amp;topsug=1" target="_blank">
+                    <span>官微</span>
+                </a>
+                </div>
+                <ul class="bottom-link">
+                <li><a href="../../../../udongman3/udongman/html">关于我们</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">平台规范</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">意见反馈</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">常见问题</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">U问U答</a></li>
+                </ul>
+                <p> COPYRIGHT©厦门优莱柏网络科技有限公司&nbsp版权所有&nbsp&nbsp&nbsp&nbsp闽ICP备12010450号-2 </p>
+            </div>
+        </div>
+        <script type="text/javascript" src="../../js/plugins/require.js" data-main="../../build/font_product/fontProductInfo.js"></script>
+    </div>
+</body>
+</html>

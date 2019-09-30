@@ -1,0 +1,835 @@
+
+.wrap .font-content{
+    background: #fff;
+}
+.wrap .font-content .font-banner{
+    position: relative;
+}
+.wrap .font-content .font-banner > img{
+   width: 100%;
+}
+.wrap .font-content .font-banner .simsun{
+    left: 3%;
+}
+.wrap .font-content .font-banner .simhei{
+    left: 38.2%;
+}
+.wrap .font-content .font-banner .kaiti{
+    left: 71%;
+}
+.wrap .font-content .font-banner .font-s-style{
+    position: absolute;
+    top: 44%;
+    width: 9.1%;
+    height: 27.85%;
+}
+.wrap .font-content .font-banner .font-s-style:after{
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -36px;
+    width: 159%;
+    height: 147%;
+}
+.wrap .font-content .font-banner .font-s-style > p{
+    font-size: 30px;
+    writing-mode: vertical-rl;
+    writing-mode: tb-rl;
+    margin: 0 auto;
+}
+.wrap .font-content .font-input-box{
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+}
+.wrap .font-content .font-input-box .font-input{
+    width: 1136px;
+    line-height: 52px;
+    border: 1px solid #626262;
+    margin: 34px auto;
+    padding: 0 15px;
+}
+.wrap .font-content .font-input-fixed{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+}
+.wrap .font-content .font-input-box .font-input > input{
+    width: 1049px;
+    height: 54px;
+    line-height: 50px;
+    border: 0;
+    font-size: 24px;
+    vertical-align: middle;
+}
+.wrap .font-content .font-input-box .font-input span{
+    color: #d3d3d3;
+    font-size: 24px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-style .font-name{
+    display: inline-block;
+}
+.wrap .font-style .get-font{
+    float: right;
+    display: inline-block;
+}
+.wrap .font-card-box{
+    background: #f8f8f8;
+    padding: 60px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.wrap .font-supporter .font-head,
+.wrap .font-card-box .font-head{
+    color: #333333;
+    font-size: 36px;
+    font-family: 'MicrosoftYaHeiUI';
+    font-weight: bold;
+    text-align: center;
+    margin-bottom:36px;
+}
+.wrap .font-card-box .font-card{
+    width: 1136px;
+    margin: 0 auto 20px;
+    padding: 16px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+.wrap .font-detail-info .font-cover,
+.wrap .font-card .font-cover{
+    width: 283px;
+    height: 328px;
+    border-radius: 10px;
+}
+.wrap .font-card .font-card-info{
+    display: inline-block;
+    margin-left: 52px;
+    vertical-align: top;
+}
+.wrap .font-card .font-card-info > h2{
+    font-size: 24px;
+    font-weight: normal;
+}
+.wrap .font-card .font-card-info .font-get-fun{
+    margin-top: 20px;
+}
+.wrap .font-card .font-card-info .font-get-fun > a{
+    display: inline-block;
+    width: 165px;
+    line-height: 35px;
+    background: #02b0e9; 
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+}
+.wrap .font-card .font-card-info .font-get-fun > a:hover{
+    background: #28bced;
+}
+
+.wrap .font-supporter{
+    position: relative;
+    width: 1136px;
+    padding: 60px 0;
+    margin: 0 auto;
+}
+.wrap .font-supporter .expert-say{
+    position: relative;
+    min-height: 100px;
+    padding: 46px 22px 12px;
+    border: 1px solid #02b0e9;
+    border-radius: 5px;
+    background: url('../../images/font-img/left_code.png') 20px 40px no-repeat,
+    url('../../images/font-img/right_code.png') 1090px 40px no-repeat;
+    color: #626262;
+    font-size: 16px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-supporter .expert-say .triangle{
+    position: absolute;
+    left: 400px;
+    bottom: -11px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-right:  1px solid #02b0e9;
+    border-bottom:  1px solid #02b0e9;
+    transform: rotate(45deg);
+}
+.wrap .font-supporter .expert-say .say{
+    text-align: center;
+}
+.wrap .font-supporter .expert-say .author{
+   position: absolute;
+   bottom: 12px;
+   right: 22px;
+}
+.wrap .font-supporter .author-img {
+    display: flex;
+    justify-content: space-between;
+    width: 416px;
+    margin: 34px auto 0;
+}
+.wrap .font-supporter .author-img li{
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+.wrap .font-supporter .author-img img{
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+}
+/* 字体产品详情页 */
+.wrap .font-detail-content{
+    width: 1136px;
+    margin: 0 auto 50px;
+    padding-top: 90px;
+    background: #f8f8f8;
+}
+.wrap .font-detail-content .font-detail-info{
+    padding: 16px;
+    background: #fff;
+    font-size: 0;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-detail-content .font-product-info{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 52px;
+    vertical-align: top;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.font-detail-content .font-product-info .tit{
+    color: #333333;
+    font-size: 28px;
+    font-weight: normal;
+}
+.font-detail-content .font-product-info .share{
+    position: relative;
+    width: 150px;
+    display: inline-block;
+    padding-left: 22px;
+    margin-left: 40px;
+    background: url('../../images/font-img/ic_share.png') no-repeat;
+    font-size: 14px;
+    cursor: default;
+}
+.font-detail-content .font-product-info .share:hover .share-box{
+    display: flex;
+}
+.font-detail-content .font-product-info .share .share-box{
+    position: absolute;
+    left: 0;
+    display: none;
+    justify-content: space-around;
+    width: 200px;
+    padding: 14px 0;
+    box-shadow: 0 0 5px #e5e5e5;
+    border-radius: 4px;
+    background: #ffffff;
+}
+.font-detail-content .font-product-info .share .share-box li{
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.font-detail-content .font-product-info .share .share-box .tsina{
+    background: url('../../images/agent-2019/ic_weibo_n.png') no-repeat;
+}
+.font-detail-content .font-product-info .share .share-box .tsina:hover{
+    background: url('../../images/agent-2019/ic_weibo_h.png') no-repeat;
+}
+.font-detail-content .font-product-info .share .share-box .qzone{
+    background: url('../../images/agent-2019/ic_qzone_n.png') no-repeat;
+}
+.font-detail-content .font-product-info .share .share-box .qzone:hover{
+    background: url('../../images/agent-2019/ic_qzone_h.png') no-repeat;
+}
+.font-detail-content .font-product-info .share .share-box .copy{
+    background: url('../../images/agent-2019/ic_link_n.png') no-repeat;
+}
+.font-detail-content .font-product-info .share .share-box .copy:hover{
+    background: url('../../images/agent-2019/ic_link_h.png') no-repeat;
+}
+
+.wrap .font-card .font-card-info .brief,
+.font-detail-content .font-product-info .brief{
+    margin: 30px 0;
+    color: #333333;
+    font-size: 14px;
+}
+.wrap .font-card .font-card-info .info-box,
+.font-detail-content .font-product-info .info-box{
+    display: inline-block;
+    width: 460px;
+}
+.wrap .font-card .font-card-info .info-box > div,
+.font-detail-content .font-product-info .info-box > div{
+    display: inline-block;
+    width: 225px;
+    margin-bottom: 15px;
+    color: #333333;
+    font-size: 14px;
+}
+.font-detail-content .font-product-info .use-type,
+.font-detail-content .font-product-info .author-type{
+    color: #333333;
+    font-size: 14px;
+}
+.font-detail-content .font-product-info .author-type > button{
+    width: 116px;
+    height: 40px;
+    margin-bottom: 22px;
+    margin-right: 14px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #333;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.font-detail-content .font-product-info .author-type > button.active{
+    position: relative;
+    background: #ebfaff;
+    border-color: #02b0e9;
+    border-width: 2px;
+}
+.font-detail-content .font-product-info .author-type > button.active:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width:0;
+    height: 0;
+    border: 10px solid;
+    border-color: transparent #02b0e9 #02b0e9 transparent;
+}
+.font-detail-content .font-product-info .author-type > button.active:after{
+    box-sizing: content-box;
+    content: "";
+    border: 1px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    height: 7px;
+    right: 4px;
+    position: absolute;
+    bottom: 3px;
+    transform: rotate(45deg) scaleY(1);
+    width: 3px;
+    transform-origin: center;
+}
+.font-detail-content .font-product-info .use-type-btn{
+    display: inline-block;
+}
+.font-detail-content .font-product-info .author-type .author-info{
+    display: inline-block;
+    background: url('../../images/font-img/ic_question.png') no-repeat;
+    padding-left: 25px;
+    color: #ef4849;
+    cursor: pointer;
+}
+.font-detail-content .font-pay{
+    padding-right: 20px;
+    color: #333333;
+    font-size: 14px;
+    text-align: right;
+}
+
+.font-detail-content .font-pay .num{
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+}
+.font-detail-content .font-pay .num-big{
+    font-size: 30px;
+}
+.font-detail-content .font-pay > button{
+    width: 160px;
+    line-height: 46px;
+    background: #02b0e9;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    margin: 0 14px 0 30px;
+    color: #ffffff;
+    font-family: 'MicrosoftYaHeiUI';
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+.font-detail-content .font-pay > button:hover{
+    background: #28bced;
+}
+.font-detail-content .font-pay > a{
+    color: #ef4849;
+    text-decoration: underline;
+}
+.wrap .font-preview{
+    min-height: 190px;
+    padding: 40px 40px 0 40px;
+    margin-top: 20px;
+    background: #ffffff;
+}
+.wrap .font-preview .font-input-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wrap .font-preview .font-input-box .font-input{
+    width: 720px;
+    height: 55px;
+    line-height: 52px;
+    padding-left: 20px;
+}
+.wrap .font-preview .font-size-reset{
+    color: rgb(211,211,211);
+    font-size: 20px;
+}
+.wrap .font-preview .font-size-reset > div{
+    display: inline-block;
+    margin: 0 10px;
+}
+.wrap .font-preview .font-size-reset .ui-slider {
+    position: relative;
+    top: -5px;
+    width: 140px;
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+.wrap .font-preview .font-size-reset .ui-slider-handle {
+    cursor: default;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border: 2px solid #02b0e9;
+    margin: -5px 0 0 -7px;
+    border-radius: 50%;
+}
+.font-preview .font-input-box .font-input{
+    width: 720px;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 20px;
+    border: 1px solid #02b0e9;
+}
+
+.font-preview .font-input-box .font-input > input{
+    width: 640px;
+    height: 54px;
+    line-height: 54px;
+    border: 0;
+    vertical-align: top;
+    font-size: 24px;
+}
+
+.font-preview .font-input span{
+    color: #d3d3d3;
+    font-size: 24px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-content .font-input-box .font-input > input::-moz-placeholder,
+.font-preview .font-input > input::-moz-placeholder{
+    color: #d3d3d3;
+    font-size: 24px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-content .font-input-box .font-input > input:-ms-input-placeholder,
+.font-preview .font-input > input:-ms-input-placeholder{
+    color: #d3d3d3;
+    font-size: 24px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-content .font-input-box .font-input > input::-webkit-input-placeholder,
+.font-preview .font-input > input::-webkit-input-placeholder{
+    color: #d3d3d3;
+    font-size: 24px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.font-preview .font-style{
+    margin-top: 54px;
+    font-size: 34px;
+    color: #333;
+}
+.wrap .font-display{
+    margin-top: 20px;
+    background: #fff;
+}
+.wrap .font-model-padding{
+    padding:36px;
+}
+.wrap .font-model-padding img{
+    max-width: 100%;
+}
+.font-display .tit{
+    position: relative;
+    padding-left: 15px;
+    color: #333;
+    font-size: 24px;
+}
+.font-display .tit:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 34px;
+    background: #02b0e9;
+}
+.font-display .font-use-info{
+    margin-top: 10px;
+    color: #333333;
+    font: bold 18px/30px "MicrosoftYaHeiUI";
+}
+.font-display .font-info{
+    margin-top: 10px;
+}
+/* 订单详情页 */
+.wrap .font-order-info .order-table{
+    margin: 30px;
+    width: 1075px;
+    border: 1px solid #e5e5e5;
+}
+.wrap .font-order-info .order-table > thead > tr th{
+    height: 52px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f8f8f8;
+    color: #626262;
+    font-size: 14px;
+    font-family: 'MicrosoftYaHeiUI';
+    font-weight: normal;
+}
+.wrap .font-order-info .order-table > thead > tr th:first-child{
+    width: 25%;
+}
+.wrap .font-order-info .order-table > tbody > tr td{
+    height: 130px;
+    text-align: center;
+    color: #333333;
+    font-size: 14px;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-block-padding{
+    padding: 30px 0;
+}
+
+.wrap .font-order-info .order-table img{
+    width: 88px;
+    height: 88px;
+}
+.wrap .font-order-info .order-table .download-btn{
+    width: 128px;
+    line-height: 36px;
+    background: #02b0e9;
+    border: 0;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: 'MicrosoftYaHeiUI';
+    cursor: pointer;
+}
+.wrap .font-order-info .order-table .download-btn:hover{
+    background: #28bced;
+}
+.wrap .font-order-info .order-table .download-btn.gray-btn{
+    background: #7d7d7d;
+    margin-left: 22px;
+}
+.wrap .font-order-info .order-table .download-btn.gray-btn:hover{
+    background: #aeaeae;
+}
+.wrap .font-order-info .font-display .tit-box{
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+.wrap .font-order-info{
+    width: 1136px;
+    margin: 90px auto 50px;
+}
+.wrap .font-order-info .font-model{
+    border-bottom: 1px solid #f0f0f0;
+}
+.wrap .font-author-con{
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-order-info .font-notice{
+    display: inline-block;
+    margin-left: 16px;
+    color: #ef4849;
+    font-size: 14px;
+}
+.wrap .font-order-info .font-form-box{
+    padding-left: 32px;
+    font-size: 14px;
+}
+.font-order-info .font-form-box .form-group{
+    position: relative;
+    margin-top: 20px;
+}
+.font-order-info .font-form-box label{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 67px;
+    text-align: right;
+}
+.font-order-info .font-form-box label:after{
+    content: '*';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ef4849;
+    font-size: 16px;
+}
+.font-order-info .font-form-box .nomal-input{
+    width: 480px;
+    height: 36px;
+    padding-left: 10px;
+}
+.font-order-info .font-form-box .code-input{
+    width: 349px;
+}
+.font-order-info .font-form-box .check-btn{
+    width: 128px;
+    height: 38px;
+    background: #7d7d7d;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'MicrosoftYaHeiUI';
+    vertical-align: bottom;
+    cursor: pointer;
+}
+.font-order-info .font-form-box .check-btn:hover{
+    background: #aeaeae;
+}
+.font-order-info .font-form-box .check-btn:disabled{
+    background: #e5e5e5;
+    color: #aeaeae;
+}
+.font-order-info .font-form-box .nomal-check{
+    display: inline-block;
+    padding-left: 25px;
+    vertical-align: middle;
+    line-height: 20px;
+    margin-left: 20px;
+    background: url('../../images/msg_bg.png') no-repeat;
+    background-position: 3px -147px;
+}
+.font-order-info .font-form-box .nomal-check.error {
+    background-position: 3px -47px;
+    color: red;
+}
+.font-order-info .font-pay-detail .font-pay-right{
+    font-size: 14px;
+    font-family: 'MicrosoftYaHeiUI';
+    text-align: right;
+}
+.font-order-info .font-pay-detail .font-pay-right > div{
+    display: inline-block;
+    width: 270px;
+    text-align: left;
+}
+.font-order-info .font-pay-detail .font-pay-right .font-small{
+    color: #333333;
+    font-weight: bold;
+}
+.font-order-info .font-pay-detail .font-warning{
+    margin-top: 14px;
+}
+.font-order-info .font-pay-detail .goods-amount {
+    margin-top: 40px;
+}
+.font-order-info .font-pay-detail .amounts-payable{
+    margin-top: 14px;
+}
+.font-order-info .font-pay-detail .go-to-pay{
+    margin-top: 20px;
+}
+.font-order-info .amounts-payable span{
+    color: #333333;
+    font-size: 24px;
+    font-weight: bold;
+}
+.font-order-info .amounts-payable .font-middle{
+    font-size: 36px;
+}
+.font-order-info .font-pay-detail .font-pay-right button{
+    width: 160px;
+    height: 46px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'MicrosoftYaHeiUI';
+    margin-right: 10px;
+    background: #02b0e9;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+}
+.font-order-info .order-detail a,
+.font-order-info .font-pay-detail .go-to-pay a{
+    color: #ef4849;
+    text-decoration: underline;
+}
+.font-order-info .order-detail a{
+    display: inline-block;
+    margin-left: 16px;
+    font-size: 14px;
+    font-weight: normal;
+}
+.font-order-info .order-detail{
+    margin: 30px 0 0 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.font-order-info .font-pay-select{
+    width: 506px;
+    margin: 38px auto;
+}
+.font-order-info .font-pay-select .payment_lst li{
+    width: 235px;
+    height: 78px;
+}
+.font-order-info .font-pay-select .payment_lst .new-wechat {
+    margin-left: 42px;
+}
+.font-order-info .font-pay-select .payment_lst li .pay-icon{
+    width: 60px;
+    height: 54px;
+}
+.font-order-info .font-pay-select .payment_lst li .wechat-pay-icon {
+    background: url(../../images/font-img/ic_wechat.png) no-repeat;
+}
+.font-order-info .font-pay-select .payment_lst li .alipay-icon{
+    background: url(../../images/font-img/ic_alipay.png) no-repeat;
+}
+.font-order-info .font-pay-select .payment_lst li .icon-toggle{
+    padding-top: 34px;
+}
+.font-order-info .font-pay-select .payment_lst li .pay-text{
+    margin-top: 25px;
+    font-size: 20px;
+}
+.font-order-info .font-pay-select .payment_lst li.selected{
+    background: #ebfaff;
+    border: 2px solid #02b0e9;
+}
+.font-order-info .font-order-pay{
+    margin-top: 40px;
+    font-size: 14px;
+    text-align: center;
+}
+.font-order-info .font-code-img{
+    position: relative;
+    text-align: center;
+}
+.font-order-info .font-code-img .qrcode{
+    padding: 10px;
+    height: 225px;
+}
+.font-order-info .font-code-img .code-img-box{
+    position: absolute;
+    top:0;
+    left: 133px;
+    width: 241px;
+    height: 241px;
+    background: url('../../images/font-img/pic_qrcord.png') no-repeat;
+}
+.font-order-info .font-code-img > img{
+    width: 240px;
+    height: 240px;
+}
+.font-order-info .font-code-img > p{
+    font-size: 14px;
+    color: #02b0e9;
+    background: url('../../images/ai-drawn/ic_refresh.png') no-repeat 217px center;
+    cursor: pointer;
+}
+.wrap .font-order-result{
+    margin-top: 130px;
+}
+.wrap .font-order-result .font-pay-success{
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+} 
+.wrap .font-order-result .font-pay-success p{
+    margin-left: 30px;
+    color: #2dc1a7;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'MicrosoftYaHeiUI';
+}
+.wrap .font-order-result > p{
+    margin-top: 20px;
+    text-align: center;
+    color: #aeaeae;
+    font-size: 14px;
+}
+@media (min-width: 1440px) and (max-width: 1740px) {
+    .wrap .font-content .font-banner .font-s-style > p{
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 1440px) {
+    .wrap .font-content .font-banner .font-s-style > p{
+        font-size: 22px;
+    }
+}
+.animatedTextIn{
+    -webkit-animation: animateFunctionTextIn 0.4s;
+    animation: animateFunctionTextIn 0.4s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+.animatedTextOut{
+    -webkit-animation: animateFunctionTextOut 0.4s;
+    animation: animateFunctionTextOut 0.4s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+@-webkit-keyframes animateFunctionTextOut {
+    0% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(0.6, 0.6);
+        transform: scale(0.6, 0.6);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes animateFunctionTextIn {
+    0% {
+        -webkit-transform: scale(0.6, 0.6);
+        transform: scale(0.6, 0.6);
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform:  scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}

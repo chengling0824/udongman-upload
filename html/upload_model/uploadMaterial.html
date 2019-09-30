@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>优动漫 动漫创作支援平台</title>
+    <meta name="keywords" content="优动漫,绘画助手,绘画课程,在线练习,ClipStudioPaint,ComicStudio,IllustStudio,Retas,优漫,优绘,教程,素材,漫画,插画">
+    <meta name="description" content="优动漫平台致力于为广大绘画爱好者提供专业的创作支持和帮助，包括在线课程、素材下载、在线练习等多种服务，以及绘画助手、Clip Studio Paint官方中文版、Comic Studio官方中文版、Retas官方中文版等众多软硬件工具。">
+    <link rel="stylesheet" href="../../css/global.css">   
+    <link rel="stylesheet" href="../../css/28-new-content-detail.css">    
+    <link rel="stylesheet" href="../../css/upload_model/reset.css">
+    <link rel="stylesheet" href="../../css/upload_model/upload.css">
+    <link rel="stylesheet" href="../../css/upload_model/webuploader.css">
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <a href="" class="logo"></a>
+        <nav>
+            <ul>
+                <li><span><a href="">首页</a></span></li>
+                <li><span><a href="">学习</a></span></li>
+                <li><span><a href="">工具</a></span></li>
+                <li><span><a href="">素材</a></span></li>
+                <li><span><a href="">练习</a></span></li>
+                <li><span><a href="">作品</a></span></li>
+                <li><span><a href="">活动</a></span></li>
+            </ul>
+        </nav>
+        <div class="login-status">
+            <a href=""><img src="" alt=""></a>
+        </div>
+        <div class="search-bar">
+            <form action="" method="get" name="side_search" id="side_search" onsubmit="return check_global_search_form();">
+                <input type="hidden" value="search" name="m">
+                <input type="hidden" value="search" name="c">
+                <input type="hidden" value="search" name="a">
+                <dl class="sim_select">
+                    <input type="hidden" name="search_type" id="searchmodel">
+                    <dt>教程</dt>
+                    <dd>
+                        <p ddvalue="1">教程</p>
+                        <p ddvalue="2">课程</p>
+                        <p ddvalue="3">素材</p>
+                        <p ddvalue="4">练习</p>
+                        <p ddvalue="5">作品</p>
+                    </dd>
+                </dl>
+                <div>
+                    <input type="text" class="input" id="q" name="q" maxlength="20">
+                    <input type="submit" class="btn search_btn" value="">
+                </div>
+            </form>
+        </div>
+    </header>
+    <form action="">
+        <div class="content">
+            <div class="uploadTitle">
+                <h1>发布素材</h1>
+                <span>温馨提示：标识“</span> 
+                <a class="required">●</a>
+                <span>”为必填项，请填写完整后再发布哦~</span>
+            </div>
+
+            <div class="material">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>素材上传</span>
+                </div>
+                <div class="upWorkBox">
+                    <div class="materialPicker" id="workPicker">上传素材</div>
+                    <p class="info0">仅支持mtd格式的文件</p>
+
+                    <div class="fileUpBox" style="display:none;">
+                        <div class="file-type material-icon"></div>
+                        <div class="progress-bar">
+                            <div class="percentage-bar"></div>
+                        </div>
+                        <span class="file-title">素材名.mtd</span>
+                        <span class="status">上传中...</span>
+                        <span class="percentage"></span>
+                        <div class="del-button"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="multi-image">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>素材介绍</span>
+                </div>
+                <div class="upIntroBox" id="uploader">
+                    <div id="filePicker" class="filePicker">上传图片</div>
+                    <p class="info0">支持jpg/png格式，单张图片不超过10M，最多20张图片</p>
+                    <div class="imgBox">
+                        <div class="queueList" >
+                            <div class="upBox">
+                                <!-- <input type="file" name="file" class="webuploader-element-invisible" id="residence_photo" multiple="multiple" accept="image/*"> -->
+                                <div class="upBtn" id="upBtn"></div>
+                                <p class="info1">点击上传图像</p>
+                                <p class="info2">支持jpg/png格式<br>不超过10M</p>
+                            </div>
+                        </div>
+                        <div class="statusBar" >
+                            <div class="progress">
+                                <span class="text">0%</span>
+                                <span class="percentage"></span>
+                            </div>    
+                            <div class="info"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="upload-cover">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>素材封面</span>
+                    <span class="info">当前裁剪尺寸：1200*1200，建议尺寸：800*800或以上</span>
+                </div>
+                <div class="coverRow">
+                    <div class="cover-prior">
+                        <div class="img-container cropper-bg">
+                            <div class="upCoverBtn-prior">
+                                <div class="upCoverBtn-1"></div>
+                                <input type="file" accept="image/*" class="upCoverBtn-2" value>
+                                <p>点击上传封面</p>
+                            </div>
+                            <!-- <img src="" id="cropperImg" alt=""> -->
+                        </div>
+                        <a class="re-upload">重新上传</a>
+                    </div>
+                    <div class="cover-after">
+                        <div class="img-preview preview-lg" ></div>
+                        <div class="cover-title"></div>
+                        <div class="cover-avatar"></div>
+                        <div class="cover-username"></div>
+                        <div class="cover-pageviews"></div>
+                        <span class="preview-tag">封面预览</span>
+                    </div>
+                </div> 
+            </div>
+            <div class="upload-info">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>素材信息</span>
+                </div>
+                <div class="upload-title" id="material_title">
+                    <label for="upload_title">素材标题：</label>
+                    <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" maxlength="30">
+                    <span class="txtInput-info"></span>
+                </div>
+                <div class="upload-type">
+                    <label for="upload_type">素材类型：</label>
+                    <select name="" id="upload_type" class="uploadType-chose">
+                        <option disabled selected style="color: #cccccc">请选择素材类型</option>
+                        <option value="">笔刷素材</option>
+                        <option>图像素材</option>
+                        <option>3D素材</option>
+                    </select>
+                </div>
+                <div class="material-application">
+                    <label>素材应用：</label>
+                        <ul>
+                            <li><span>描线</span></li>
+                            <li><span>上色</span></li>
+                            <li><span>特殊效果</span></li>
+                            <li><span>排线刮网</span></li>
+                            <li><span>服饰</span></li>
+                            <li><span>图样</span></li>
+                            <li><span>花卉</span></li>
+                            <li><span>动物</span></li>
+                            <li><span>草木</span></li>
+                            <li><span>人工背景</span></li>
+                            <li><span>自然背景</span></li>
+                        </ul>
+                </div>
+                <div class="upload-tag">
+                    <label for="input_tags">素材标签：</label>
+                    <div class="tagInput-box" id="tags">
+                        <input class="input_content" placeholder="按下回车创建标签" />
+                        <input type="text" class="input_tags" id="input_tags" name="" value="故事漫画" />
+                    </div>
+                    <span class="txtInput-info"></span>
+                    <ul class="tag-provide" id="tag_provide">
+                        <li>测试</li>
+                        <li>故事漫画</li>
+                        <li>故事</li>
+                        <li>漫画</li>
+                        <li>特殊效果</li>
+                        <li>笔刷</li>
+                    </ul>
+                </div>
+                <div class="upload-price">
+                    <label>素材价格：</label>
+                    <input type="text" class="input-price material-price">
+                    <input type="radio" name="price_type" id="integration_option" class="integration-option" checked><label for="integration_option" class="price-radio"></label><span>积分</span>
+                    <input type="radio" name="price_type" id="gold_option" class="gold-option"><label for="gold_option" class="price-radio"></label><span>金币</span>
+                    <div class="info">
+                        <div class="infoIcon"></div>
+                        <p>点数设置在2个及以上才可获得收益。</p>
+                    </div>
+                </div>
+                <div class="upload-brief">
+                    <label for="">素材简介：</label>
+                    <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入素材介绍"></textarea>
+                    <span class="txtInput-info"></span>
+                </div>
+            </div>
+            <input type="button" value="提交发布" id="materialButton" class="uploadButton">
+        </div> 
+    </form>
+
+
+    <div class="footer">
+        <div class="footer-box">
+            <div class="bottom-qzone" title="优动漫交流群">
+                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=eba9448b4bedd6e105d882143d8ab23d58c951e9532854c3e06bf210251890c3">
+                    <span></span>
+                </a>
+            </div>
+            <div class="bottom-weibo" title="优动漫官微">
+                <a href="http://weibo.com/udongman?topnav=1&wvr=6&topsug=1" target="_blank"><span>官微</span></a>
+            </div>
+            <ul class="bottom-link">
+                <!-- 根据不同的环境，这个栏目ID会有不同  ，对应后台 关于 栏目-->
+                <li><a href="index.php?m=content&c=index&a=lists&catid=53301525">关于我们</a></li>
+                <li class="separate"></li>
+                <li><a href="index.php?m=content&c=index&a=lists&catid=53301528">平台规范</a></li>
+                <li class="separate"></li>
+                <li><a href="index.php?m=feedback&c=index&a=main">联系我们</a></li>
+            </ul>
+            <p> COPYRIGHT&copy;厦门优莱柏网络科技有限公司 版权所有 &nbsp;&nbsp;&nbsp;&nbsp; 闽ICP备12010450号-2&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;闽网文[2016]1301-018号 </p>
+        </div>
+    </div>
+</div>
+<!-- wrap end -->
+<!-- require -->
+<script src="../../js/plugins/require.js" defer async="true" data-main="../../js/upload_model/materialUpload"></script>
+</body>
+</html>

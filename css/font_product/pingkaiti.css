@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'pingkaiti';
+    /* src: url('../fonts/positive-kaiti.ttf') format('truetype'); */
+    src: url('../fonts/11111114671567764160_out.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.pingkaiti{
+    font-family: 'pingkaiti';
+}

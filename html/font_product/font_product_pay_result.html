@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字体订单支付结果页</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/28-new-content-detail.css">
+    <link rel="stylesheet" href="../../css/font_product/font-product.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="#" class="logo"></a>
+            <div class="navbar">
+                <div>
+                    <span>首页</span>
+                </div>
+                <div>
+                    <span>学习</span>
+                    <ul class="learn">
+                        <li><a href="#">软件教程</a></li>
+                        <li><a href="#">绘画教程</a></li>
+                        <li><a href="#">基础课程</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>工具</span>
+                    <ul class="tool">
+                        <li><a href="#">优动漫PAINT</a></li>
+                        <li><a href="#">绘画助手</a></li>
+                        <li><a href="#">优漫</a></li>
+                        <li><a href="#">优绘</a></li>
+                        <li><a href="#">优动漫ACTION</a></li>
+                        <li><a href="#">优动漫COORDINATE</a></li>
+                        <li><a href="#">RETAS MASTER</a></li>
+                        <li><a href="#">MODELER</a></li>
+                        <li><a href="#">QUMARION</a></li>
+                        <li><a href="#">巧手</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>素材</span>
+                    <ul class="material">
+                        <li><a href="#">笔刷素材</a></li>
+                        <li><a href="#">图像素材</a></li>
+                        <li><a href="#">自动动作</a></li>
+                        <li><a href="#">笔刷素材</a></li>
+                        <li><a href="#">3D素材</a></li>
+                        <li><a href="#">色板</a></li>
+                        <li><a href="#">工作区</a></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>练习</span>
+                    <ul class="practice">
+                        <li><a href="#">优动漫PAINT练习</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span>作品</span>
+                </div>
+                <div>
+                    <span>活动</span>
+                </div>
+            </div>
+            <div class="login-status">
+                <p style="display:none;">登录</p>
+                <p>
+                    <img src="../images/content-detail/none_zuopin.png" alt="">
+                </p>
+            </div>
+            <div class="search_bar">
+                <form action="index.php" method="get" name="side_search" id="side_search"
+                    onsubmit="return check_global_search_form();">
+                    <input type="hidden" value="search" name="m">
+                    <input type="hidden" value="search" name="c">
+                    <input type="hidden" value="searchview" name="a">
+                    <dl class="sim_select">
+                        <input name='search_type' type="hidden" id="searchmodel" value="<?php echo $search_type;?>" />
+                        <dt>教程</dt>
+                        <dd>
+                            <p ddvalue="<?php echo RESOURCE_COURSE_JC_ID;?>">教程</p>
+                            <p ddvalue="<?php echo RESOURCE_COURSE_KC_ID;?>">课程</p>
+                            <p ddvalue="<?php echo RESOURCE_MATERIAL_ID;?>">素材</p>
+                            <p ddvalue="<?php echo RESOURCE_PRACTICE_ID;?>">练习</p>
+                            <p ddvalue="<?php echo RESOURCE_WORK_ID;?>">作品</p>
+                        </dd>
+                    </dl>
+                    <div>
+                        <input type="text" class="input" id="q" name="q" value="{$q}" maxlength="20" />
+                        <input type="submit" class="btn search_btn" value="">
+                    </div>
+                </form>
+            </div>
+        </header>
+        <div class="font-order-info font-order-result">
+            <div class="font-pay-success">
+                <img src="../../images/code-activity/get-cash-success.png" alt="">
+                <p>
+                   支付成功！
+                </p>
+            </div>
+            <p>为了保护您的权益，请下载授权书作为您的授权凭证。</p>
+            <div class="font-display font-block-padding">
+                <div class="order-detail">
+                    订单提交成功，您的订单号：201905061012360213
+                    <a href="">查看订单</a>
+                </div>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>商品</th>
+                            <th>授权类型</th>
+                            <th>使用期限</th>
+                            <th>字体和授权书</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="../../images/pa/shili_3.jpg" alt="">
+                                <span>书正黑体 Regular</span>
+                            </td>
+                            <td>
+                                个人
+                            </td>
+                            <td>
+                                永久
+                            </td>
+                            <td>
+                               <button class="download-btn" id="downloadFont">下载字体</button>
+                               <button class="download-btn gray-btn" id="downloadAuthorBook">下载授权书</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-box">
+                <div class="bottom-qzone" title="优动漫交流群">
+                <a href="http://shang.qq.com/wpa/qunwpa?idkey=142bed0539fbda43576caf90e45338b2783e4d82ddf9827d806451bb456bc25e"
+                    target="_blank">
+                    <span></span>
+                </a>
+                </div>
+                <div class="bottom-weibo" title="优动漫官微">
+                <a href="http://weibo.com/udongman?topnav=1&amp;wvr=6&amp;topsug=1" target="_blank">
+                    <span>官微</span>
+                </a>
+                </div>
+                <ul class="bottom-link">
+                <li><a href="../../../../udongman3/udongman/html">关于我们</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">平台规范</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">意见反馈</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">常见问题</a></li>
+                <li class="separate"></li>
+                <li><a href="../../../../udongman3/udongman/html">U问U答</a></li>
+                </ul>
+                <p> COPYRIGHT©厦门优莱柏网络科技有限公司&nbsp版权所有&nbsp&nbsp&nbsp&nbsp闽ICP备12010450号-2 </p>
+            </div>
+        </div>
+        <iframe src="/html/font_product/font_product_authorization_download.html" id="iframe" style="position: absolute;left:-2000px;top:-2000px;"></iframe>
+        <script type="text/javascript" src="../../js/plugins/require.js" data-main="../../build/font_product/fontProductPayResult.js"></script>
+    </div>
+</body>
+</html>

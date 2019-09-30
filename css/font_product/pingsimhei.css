@@ -1,0 +1,10 @@
+
+@font-face {
+    font-family: 'pingsimhei';
+    src: url('../fonts/positive-simhei.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.pingsimhei{
+    font-family: 'pingsimhei';
+}

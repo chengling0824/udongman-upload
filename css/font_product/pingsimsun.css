@@ -1,0 +1,10 @@
+
+@font-face {
+    font-family: 'pingsimsun';
+    src: url('../fonts/positive-simsun.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.pingsimsun{
+    font-family: 'pingsimsun';
+}
