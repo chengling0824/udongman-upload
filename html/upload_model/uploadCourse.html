@@ -91,6 +91,9 @@
                     <span class="info">可以添加多张图片，单张图片不能超过10M</span>
                 </div>
                 <div id="editor" class="upload-editor"></div>
+                <!-- <div id="wangEditor">
+                    <p>欢迎使用 wangEditor 富文本编辑器</p>
+                </div> -->
             </div>
 
             <div class="upload-cover">
@@ -129,14 +132,14 @@
                 <div class="upload-title">
                     <label for="upload_title">教程标题：</label>
                     <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" >
-                    <span class="txtInput-info"></span>                    
+                    <span class="txtInput-info">30/30</span>                    
                 </div>
                 <div class="upload-type">
                     <label for="upload_type">内容属性：</label>
-                    <select name="" id="" class="contentType_1">
+                    <select name="" id="course_Type" class="contentType_1">
                         <option value="请选择" disabled selected>请选择</option>
                     </select>
-                    <select name="" id="" class="contentType_2">
+                    <select name="" id="course_Type_Sec" class="contentType_2">
                         <option value="请选择" disabled selected>请选择</option>
                     </select>
                 </div>
@@ -168,10 +171,11 @@
                 <div class="upload-brief">
                     <label for="">教程简介：</label>
                     <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入教程介绍"></textarea>
-                    <span class="txtInput-info"></span>                    
+                    <span class="txtInput-info">280/280</span>                    
                 </div>
             </div>
-            <input type="button" value="提交发布" id="courseButton" class="uploadButton">
+            <input type="button" value="提交发布" id="sub_Btn" class="uploadButton">
+            <input type="button" value="提交发布" id="nc" class="uploadButton" style="display: none">
         </div> 
     </form>
 

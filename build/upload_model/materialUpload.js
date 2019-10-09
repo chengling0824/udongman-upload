@@ -1,5 +1,5 @@
 requirejs(['../commonConfig'],function(com){ 
-    requirejs(['jquery','uploadCommonJs','multiImageJS','workUploadJS'],function($,common,multiImage,workupload){
+    requirejs(['jquery','uploadCommonJs','multiImageJS','webuploaderJS','workUploadJS'],function($,common,multiImage,Webuploader,workupload){
     // requirejs(['jquery','uploadCommonJs','uploadJS'],function($,common,uploader){
 
         // var materialType =function() {
@@ -43,7 +43,26 @@ requirejs(['../commonConfig'],function(com){
 
         $(function(){
             // 素材上传
-            workUpload.init();
+            var uploader = Webuploader.create({
+                // server: window.webuploader.uploadUrl, 
+                pick: {
+                    id:'#workPicker',
+                },
+                dnd: '.upWorkBox',
+                paste: document.body,
+                accept:{
+                    title: 'mtd',
+                    extensions: 'mtd',
+                    mimeTypes: 'mtd'
+                },
+                swf: "../../plugins/webuploader-0.1.5/Uploader.swf",
+                resize: false, 
+                chunked: true,
+                fileNumLimit: 1,
+                // fileSingleSizeLimit: 10*1024*1024,//限制大小10M，单文件
+                // fileSizeLimit: 10*1024*1024,//限制大小10M，所有被选文件，超出选择不上
+            });
+            workupload.init(uploader);
             // 素材介绍上传
             multiImage.uploadInit();
             // uploader.uploadInit();

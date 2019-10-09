@@ -23,6 +23,7 @@ define(['webuploaderJS'], function(Webuploader) {
                 $info0.hide();
                 $fileUpBox.show();
                 $file_title.text(file.name);
+                $('#file_Name').val(file.name);
                 $delBtn.on('click', function(){
                     uploader.stop();
                     if (confirm("确定要删除吗？")) {  
@@ -42,11 +43,15 @@ define(['webuploaderJS'], function(Webuploader) {
 
                 uploader.md5File(file)
                     .progress(function(percentage){
-                        console.log('Percentage:', percentage);
+                        // 上传服务器需要修改
+                        // console.log('Percentage:', percentage);
+                        $progress.css('width',percentage * 100 + '%');
+                        $info.text(parseInt(percentage * 100) + '%');
+                        console.log('Percentage:', percentage);  
                     })
                     .then(function(val) {
-                        console.log('md5 result:', val);
-                        // $status.text("已上传.");
+                        // console.log('md5 result:', val);
+                        $status.text("已上传.");
 
                     });
             });

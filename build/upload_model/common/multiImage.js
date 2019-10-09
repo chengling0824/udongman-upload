@@ -404,9 +404,6 @@ define(['webuploaderJS'], function(Webuploader) {
                 var target_pos = $to.position();   
                 var from_sort = $from.attr('data-sort');
                 var to_sort = $to.attr('data-sort');
-                console.log(1)
-                console.log(origin_pos)
-                console.log(target_pos)
                 $from.addClass('move').animate(target_pos,"fast", function(){
                     $(this).removeClass('move');
                 }).attr('data-sort', to_sort);

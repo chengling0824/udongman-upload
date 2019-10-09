@@ -1,5 +1,7 @@
 
 define(['webuploaderJS','cropperJS','ueditorAllJS'], function(Webuploader,cropper,UE) {
+// define(['webuploaderJS','cropperJS'], function(Webuploader,cropper) {
+
     var common = {
         editorInit :function(){
             var ue = UE.getEditor( 'editor', {
@@ -20,7 +22,6 @@ define(['webuploaderJS','cropperJS','ueditorAllJS'], function(Webuploader,croppe
         },
         cropImg :function(){
             var $upcoverBtn = $('.upCoverBtn-prior');
-
             $upcoverBtn.on('change','input',function(e){
                 var file  = e.target.files[0];
                 var reader = new FileReader(); 
@@ -35,20 +36,63 @@ define(['webuploaderJS','cropperJS','ueditorAllJS'], function(Webuploader,croppe
                         $dataY = $('#dataY'),
                         $dataHeight = $('#dataHeight'),
                         $dataWidth = $('#dataWidth'),
-                        $dataRotate = $('#dataRotate'),
-                        options = {
-                            aspectRatio: 1 / 1,
-                            preview: '.img-preview',
-                            crop: function (data) {
-                                $dataX.val(Math.round(data.x));
-                                $dataY.val(Math.round(data.y));
-                                $dataHeight.val(Math.round(data.height));
-                                $dataWidth.val(Math.round(data.width));
-                                $dataRotate.val(Math.round(data.rotate));
-                            }
-                        };
-                    $image.cropper(options);
-                    
+                        console = window.console || {log:$.noop},
+                        cropper;
+
+                    $image.cropper({
+                        aspectRatio: 1 / 1,
+                        data:{
+                            x: 420,
+                            y: 50,
+                            width: 256,
+                            height: 256,
+                        },
+                        preview: '.img-preview',
+                        done: function(data) {
+                            $dataX.val(data.x);
+                            $dataY.val(data.y);
+                            $dataHeight.val(data.height);
+                            $dataWidth.val(data.width);
+                          },
+                          build: function(e) {
+                            console.log(e.type);
+                          },
+                          built: function(e) {
+                            console.log(e.type);
+                          },
+                          dragstart: function(e) {
+                            console.log(e.type);
+                          },
+                          dragmove: function(e) {
+                            console.log(e.type);
+                          },
+                          dragend: function(e) {
+                            console.log(e.type);
+                          }
+                    });
+                    cropper = $image.data("cropper");
+                    $image.on({
+                        "build.cropper": function(e) {
+                          console.log(e.type);
+                          // e.preventDefault();
+                        },
+                        "built.cropper": function(e) {
+                          console.log(e.type);
+                          // e.preventDefault();
+                        },
+                        "dragstart.cropper": function(e) {
+                          console.log(e.type);
+                          // e.preventDefault();
+                        },
+                        "dragmove.cropper": function(e) {
+                          console.log(e.type);
+                          // e.preventDefault();
+                        },
+                        "dragend.cropper": function(e) {
+                          console.log(e.type);
+                          // e.preventDefault();
+                        }
+                      });
                 }
                 // $image.cropper(options);
             });
