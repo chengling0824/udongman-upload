@@ -118,8 +118,8 @@ requirejs(['../commonConfig'],function(com){
                 checkFormFlag = true
             }
             //封面
-            var str = $(".img-preview").find('img');
-            if(str){
+            var str = $(".img-preview img").attr('src');
+            if(str!=undefined){
                 checkFormFlag = true
             }else{
                 alert('请上传封面');
@@ -179,7 +179,7 @@ requirejs(['../commonConfig'],function(com){
                     return false;
                 }
                 else{
-                    if ('pointchecked == integration_option'){
+                    if (pointchecked == 'integration_option'){
                         if(point.val() > 400){
                             alert('素材价格不能大于1000积分');
                             point.focus();
@@ -194,10 +194,12 @@ requirejs(['../commonConfig'],function(com){
                             return false;
                         }
                     }
+                    checkFormFlag = true
                 }
             }else{
-                checkFormFlag = true
-                $("#course_Price").val(0)
+                alert('请输入素材价格');
+                return false;
+                // $("#course_Price").val(0)
             }
     
             //简介
@@ -212,13 +214,6 @@ requirejs(['../commonConfig'],function(com){
                 checkFormFlag = true
             }
     
-            // if($('.preview-container').css('background-image') == 'none' && $('.preview-container').find('img').length == 0){
-            //     alert('请对封面进行裁剪');
-            //     checkFormFlag = false;
-            //     return false;
-            // }else{
-            //     checkFormFlag = true;
-            // }
             //验证码
             if($("#verifyCodeInp").length > 0) {
                 var verifyCodeInp = $("#verifyCodeInp").val();

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/28-new-content-detail.css"> 
     <link rel="stylesheet" href="../../css/upload_model/reset.css">
     <link rel="stylesheet" href="../../css/upload_model/upload.css">
+    <link rel="stylesheet" href="../../css/upload_model/cropper.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <!-- 编辑器 -->
     <!-- <script src="../ueditor/ueditor.config.js"></script>
@@ -89,7 +90,7 @@
                                 <input type="file" accept="image/*" class="upCoverBtn-2" value>
                                 <p>点击上传封面</p>
                             </div>
-                            <!-- <img src="" id="cropperImg" alt=""> -->
+                            <img class="cropper" src="" id="cropperImg" alt="Picture" >
                         </div>
                         <a class="re-upload">重新上传</a>
                     </div>
@@ -111,15 +112,17 @@
                 <div class="upload-title">
                     <label for="upload_title">教程标题：</label>
                     <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" >
-                    <span class="txtInput-info"></span>                    
+                    <span class="txtInput-info">30/30</span>                    
                 </div>
                 <div class="upload-type">
                     <label for="upload_type">内容属性：</label>
-                    <select name="" id="" class="contentType_1">
-                        <option value="请选择" disabled selected>请选择</option>
+                    <select name="" id="course_Type" class="contentType_1">
+                        <option value="0" disabled selected>请选择</option>
+                        <option value="1" >请选我</option>
                     </select>
-                    <select name="" id="" class="contentType_2">
-                        <option value="请选择" disabled selected>请选择</option>
+                    <select name="" id="course_Type_Sec" class="contentType_2">
+                        <option value="0" disabled selected>请选择</option>
+                        <option value="1" >请选我</option>
                     </select>
                 </div>
                 <div class="upload-tag">
@@ -150,10 +153,11 @@
                 <div class="upload-brief">
                     <label for="">教程简介：</label>
                     <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入教程介绍"></textarea>
-                    <span class="txtInput-info"></span>                    
+                    <span class="txtInput-info">280/280</span>                    
                 </div>
             </div>
-            <input type="button" value="提交发布" id="tutorialButton" class="uploadButton">
+            <input type="button" value="提交发布" id="sub_Btn" class="uploadButton">
+            <input type="button" value="提交发布" id="nc" class="uploadButton" style="display: none">
         </div> 
     </form>
 

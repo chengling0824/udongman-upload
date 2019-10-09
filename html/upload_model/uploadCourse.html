@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/28-new-content-detail.css"> 
     <link rel="stylesheet" href="../../css/upload_model/reset.css">
     <link rel="stylesheet" href="../../css/upload_model/upload.css">
+    <link rel="stylesheet" href="../../css/upload_model/cropper.css">
     <link rel="stylesheet" href="../../css/upload_model/webuploader.css">
 </head>
 <body>
@@ -77,9 +78,9 @@
                         <div class="progress-bar">
                             <div class="percentage-bar"></div>
                         </div>
-                        <span class="file-title">视频名.mp4</span>
-                        <span class="status">上传中...</span>
-                        <span class="percentage">30%</span>
+                        <span class="file-title" id="file_Name"></span>
+                        <span class="status" id="mat_Upload_Err"></span>
+                        <span class="percentage"></span>
                         <div class="del-button"></div>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
                                 <input type="file" accept="image/*" class="upCoverBtn-2" value>
                                 <p>点击上传封面</p>
                             </div>
-                            <!-- <img src="" id="cropperImg" alt=""> -->
+                            <img class="cropper" src="" id="cropperImg" alt="Picture" >
                         </div>
                         <a class="re-upload">重新上传</a>
                     </div>
@@ -130,21 +131,23 @@
                     <span>课程信息</span>
                 </div>
                 <div class="upload-title">
-                    <label for="upload_title">教程标题：</label>
+                    <label for="upload_title">课程标题：</label>
                     <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" >
                     <span class="txtInput-info">30/30</span>                    
                 </div>
                 <div class="upload-type">
                     <label for="upload_type">内容属性：</label>
                     <select name="" id="course_Type" class="contentType_1">
-                        <option value="请选择" disabled selected>请选择</option>
+                        <option value="0" disabled selected>请选择</option>
+                        <option value="1" >请选我</option>
                     </select>
                     <select name="" id="course_Type_Sec" class="contentType_2">
-                        <option value="请选择" disabled selected>请选择</option>
+                        <option value="0" disabled selected>请选择</option>
+                        <option value="1" >请选我</option>
                     </select>
                 </div>
                 <div class="upload-tag">
-                    <label for="input_tags">教程标签：</label>
+                    <label for="input_tags">课程标签：</label>
                     <div class="tagInput-box" id="tags">
                         <input class="input_content" placeholder="按下回车创建标签" / />
                         <input type="text" class="input_tags" id="input_tags" name="" value="故事漫画" />
@@ -169,8 +172,8 @@
                     </div> -->
                 </div>
                 <div class="upload-brief">
-                    <label for="">教程简介：</label>
-                    <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入教程介绍"></textarea>
+                    <label for="">课程简介：</label>
+                    <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入课程介绍"></textarea>
                     <span class="txtInput-info">280/280</span>                    
                 </div>
             </div>

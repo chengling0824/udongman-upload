@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../css/upload_model/reset.css">
     <link rel="stylesheet" href="../../css/upload_model/upload.css">
     <link rel="stylesheet" href="../../css/upload_model/webuploader.css">
+    <link rel="stylesheet" href="../../css/upload_model/cropper.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
@@ -98,7 +99,7 @@
                                 <input type="file" accept="image/*" class="upCoverBtn-2" value>
                                 <p>点击上传封面</p>
                             </div>
-                            <!-- <img src="" id="cropperImg" alt=""> -->
+                            <img class="cropper" src="" id="cropperImg" alt="Picture" >
                         </div>
                         <a class="re-upload">重新上传</a>
                     </div>
@@ -110,7 +111,7 @@
                         <div class="cover-pageviews"></div>
                         <span class="preview-tag">封面预览</span>
                     </div>
-                </div> 
+                </div>  
             </div>
             <div class="upload-info">
                 <div class="title-box">
@@ -120,12 +121,12 @@
                 <div class="upload-title">
                     <label for="upload_title">作品标题：</label>
                     <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" >
-                    <span class="txtInput-info"></span>
+                    <span class="txtInput-info">30/30</span>
                 </div>
                 <div class="upload-type">
                     <label for="upload_type">作品类型：</label>
                     <select name="" id="upload_type" class="uploadType-chose">
-                        <option disabled selected style="color: #cccccc">请选择作品类型</option>
+                        <option disabled selected style="color: #cccccc" value="0">请选择作品类型</option>
                         <option value="">笔刷素材</option>
                         <option>图像素材</option>
                         <option>3D素材</option>
@@ -150,10 +151,11 @@
                 <div class="upload-brief">
                     <label for="">作品简介：</label>
                     <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入作品介绍，临摹作品请注明作品来源"></textarea>
-                    <span class="txtInput-info"></span>
+                    <span class="txtInput-info">280/280</span>
                 </div>
             </div>
-            <input type="button" value="提交发布" id="worksButton" class="uploadButton">
+            <input type="button" value="提交发布" id="sub_Btn" class="uploadButton">
+            <input type="button" value="提交发布" id="nc" class="uploadButton" style="display: none">
         </div> 
     </form>
 

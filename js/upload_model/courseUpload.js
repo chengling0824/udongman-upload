@@ -1,24 +1,69 @@
 requirejs(['../commonConfig'],function(com){
     // requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS','wangEditor'],function($,common,Webuploader,workupload,E){
     requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS'],function($,common,Webuploader,workupload){
+        //在点击确定后，根据界面上的图片属性构造content的value
+        function fillContent(){
+            //content清空
+            $('#content').val('');
+            //根据imgWrap来组织content
+            var content='';
+            $('.imgWrap').each(function(i)
+            {
+                var imgsrc = $(this).html();
+                //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
+                var is_uploaded = isUploaded(imgsrc);
+                if(is_uploaded)
+                {
+                    content  += imgsrc + '<hr />';
+                }
+            });
+            $('#content').val(content);
+        }
+
+        //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
+        function isUploaded(imgsrc)
+        {
+            var pos = imgsrc.indexOf("http");
+            if ( pos > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         function checkForm(){
-            var arr = [];
-            arr.push(UE.getEditor('editor').getContent());
-            if(arr.join("\n") == ''){
-                alert('请填写课程内容');
+            //视频文件
+            if($("#file_Name").val() == ''){
+                alert('请上传视频文件');
                 checkFormFlag = false
                 return false;
             }else{
-                checkFormFlag = true
+                if($('#mat_Upload_Err').text() != '已上传.'){
+                    alert('视频文件未上传成功');
+                    checkFormFlag = false
+                    return false;
+                }else{
+                    checkFormFlag = true
+                }
             }
+           //图文内容
+           var arr = [];
+           arr.push(UE.getEditor('editor').getContent());
+           if(arr.join("\n") == ''){
+               alert('请填写图文内容');
+               checkFormFlag = false
+               return false;
+           }else{
+               checkFormFlag = true
+           }
             //封面
-            var str = $(".cropper-bg").html();
-            if(str.indexOf('<img') <= -1){
+            var str = $(".img-preview img").attr('src');
+            if(str!=undefined){
+                checkFormFlag = true
+            }else{
                 alert('请上传封面');
                 checkFormFlag = false
                 return false;
-            }else{
-                checkFormFlag = true
             }
 
             //标题
@@ -32,31 +77,29 @@ requirejs(['../commonConfig'],function(com){
             }else{
                 checkFormFlag = true
             }
-    
-            //属性
-            var catid = $('#catid').val();
-            // var catid = $('#course_Type').val();
+            // 属性
             var type = $('#course_Type');
             //如果是官方用户内容属性或工具属性必选其一
-            if (catid){
-                if(type.val() == '0' && catid == "0"){
-                    alert('请选择内容属性或者工具属性');
-                    type.focus();
-                    checkFormFlag = false
-                    return false;
-                }else{
-                    if($("#course_Type_Sec").css('display') != 'none' &&
-                        $("#course_Type_Sec").val() == '0' &&
-                        catid == "0"){
-                        alert('请选择内容属性或者工具属性');
-                        type.focus();
-                        checkFormFlag = false
-                        return false;
-                    }else{
-                        checkFormFlag = true
-                    }
-                }
-            }else{
+            // if (catid){
+            //     if(type.val() == '0' && catid == "0"){
+            //         alert('请选择内容属性或者工具属性');
+            //         type.focus();
+            //         checkFormFlag = false
+            //         return false;
+            //     }else{
+            //         if($("#course_Type_Sec").css('display') != 'none' &&
+            //             $("#course_Type_Sec").val() == '0' &&
+            //             catid == "0"){
+            //             alert('请选择内容属性或者工具属性');
+            //             type.focus();
+            //             checkFormFlag = false
+            //             return false;
+            //         }else{
+            //             checkFormFlag = true
+            //         }
+            //     }
+            // }
+            // else{
                 if(type.val() == '0'){
                     alert('请选择内容属性');
                     type.focus();
@@ -73,7 +116,6 @@ requirejs(['../commonConfig'],function(com){
                         checkFormFlag = true
                     }
                 }
-            }
     
             //标签
             var title_len = $('.tagInput-box').find('span').length;
@@ -88,22 +130,30 @@ requirejs(['../commonConfig'],function(com){
             }
     
             //价格  point
-            var point=$(".course-price");
-            if(point.val() != ""){
+            var $point=$(".course-price");
+            var pointVal = $point.val();
+            if(pointVal != undefined){
                 var repstr="^\\d+$";
                 var repexp = new RegExp(repstr);
-                if(point.val().match(repexp)==null){
-                    alert('教程价格必须是正整数');
-                    point.focus();
-                    checkFormFlag = false
+                if(pointVal.match(repexp)==null){
+                    alert('课程价格必须是正整数');
+                    $point.focus();
+                    checkFormFlag = false;
                     return false;
                 }
                 else{
+                    if(pointVal > 100){
+                        alert('课程价格不能大于100金币');
+                        point.focus();
+                        checkFormFlag = false;
+                        return false;
+                    }
                     checkFormFlag = true
                 }
             }else{
-                checkFormFlag = true
-                $(".course_Price").val(0)
+                alert('请输入课程价格');
+                return false;
+                // $("#course_Price").val(0)
             }
     
             //简介
@@ -170,6 +220,9 @@ requirejs(['../commonConfig'],function(com){
             // var editor = new E('#wangEditor');
             // editor.create();
             // E('#wangEditor').create();
+
+            // 素材封面上传
+            common.coverImg();
 
             //  字符检验
             common.TextBox('#upload_title','30');
