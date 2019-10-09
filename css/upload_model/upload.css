@@ -267,7 +267,16 @@ header .search-bar {
 }
 /* ---------------------------- editor ---------------------------- */
 .upload-editor {
+  width: 980px;
+  height: 438px;
   margin: 23px 0 36px 46px;
+}
+.w-e-menu{
+  z-index:80 !important;
+}
+.w-e-text-container{
+  height: 408px !important;
+  z-index:80 !important;
 }
 /* ----------------------- upload muti-images ---------------------- */
 .upIntroBox .imgBox {

@@ -1,6 +1,6 @@
 requirejs(['../commonConfig'],function(com){
-    // requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS','wangEditor'],function($,common,Webuploader,workupload,E){
-    requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS'],function($,common,Webuploader,workupload){
+    requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS','wangEditor'],function($,common,Webuploader,workupload,E){
+    // requirejs(['jquery','uploadCommonJs','webuploaderJS','workUploadJS'],function($,common,Webuploader,workupload){
         //在点击确定后，根据界面上的图片属性构造content的value
         function fillContent(){
             //content清空
@@ -215,11 +215,9 @@ requirejs(['../commonConfig'],function(com){
             workupload.init(uploader);
 
             // 富文本编辑器
-            common.editorInit();
-            // var E = window.wangEditor;
-            // var editor = new E('#wangEditor');
-            // editor.create();
-            // E('#wangEditor').create();
+            // common.editorInit();
+            var editor = new E('#editor');
+            editor.create();
 
             // 素材封面上传
             common.coverImg();

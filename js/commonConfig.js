@@ -14,7 +14,7 @@ requirejs.config({
         'workUploadJS':'../../js/upload_model/common/workUpload',
         'ueditorConfigJS':'../../node_modules/ueditor/ueditor.config',
         'ueditorAllJS':'../../node_modules/ueditor/ueditor.all.min',
-        // 'wangEditor':'../../node_modules/wangEditor',
+        'wangEditor':'../../node_modules/wangEditor',
         'zeroclipboard':'../../node_modules/ueditor/third-party/zeroclipboard/ZeroClipboard',
         
         'shareJs': '../../build/lib/share',

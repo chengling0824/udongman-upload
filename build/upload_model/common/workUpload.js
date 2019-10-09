@@ -23,6 +23,7 @@ define(['webuploaderJS'], function(Webuploader) {
                 $info0.hide();
                 $fileUpBox.show();
                 $file_title.text(file.name);
+                $('#file_Name').val(file.name);
                 $delBtn.on('click', function(){
                     uploader.stop();
                     if (confirm("确定要删除吗？")) {  

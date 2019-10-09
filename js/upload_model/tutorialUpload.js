@@ -1,5 +1,6 @@
 requirejs(['../commonConfig'],function(com){ 
-    requirejs(['jquery','uploadCommonJs'],function($,common){
+    // requirejs(['jquery','uploadCommonJs'],function($,common){
+    requirejs(['jquery','uploadCommonJs','wangEditor'],function($,common,E){
 
         function checkForm(){
             //教程内容
@@ -157,7 +158,9 @@ requirejs(['../commonConfig'],function(com){
         $(function(){
 
             // 富文本编辑器
-            common.editorInit();
+            // common.editorInit();
+            var editor = new E('#editor');
+            editor.create();
 
             // 素材封面上传
             common.coverImg();

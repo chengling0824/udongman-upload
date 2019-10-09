@@ -22,6 +22,7 @@ define(['webuploaderJS','cropperJS','ueditorAllJS'], function(Webuploader,croppe
         },
         cropImg :function(){
             var $upcoverBtn = $('.upCoverBtn-prior');
+            var uploadImageURL;
             $upcoverBtn.on('change','input',function(e){
                 var file  = e.target.files[0];
                 var reader = new FileReader(); 
@@ -37,15 +38,18 @@ define(['webuploaderJS','cropperJS','ueditorAllJS'], function(Webuploader,croppe
                         $dataHeight = $('#dataHeight'),
                         $dataWidth = $('#dataWidth'),
                         console = window.console || {log:$.noop},
+                        src = $('.img-preview img').attr('src'),
                         cropper;
-
+                    if(src != null){
+                        $image.cropper('destroy').attr('src');
+                    }
                     $image.cropper({
                         aspectRatio: 1 / 1,
                         data:{
                             x: 420,
-                            y: 50,
-                            width: 256,
-                            height: 256,
+                            y: 100,
+                            width: 1000,
+                            height: 1000,
                         },
                         preview: '.img-preview',
                         done: function(data) {
