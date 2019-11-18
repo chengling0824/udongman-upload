@@ -1,4 +1,4 @@
-# udongman-upload（前端交互代码）
+# udongman-upload
 
 2019.11.18更新：
 多图上传更改为pluploadJS，并对性能及细节性问题进行了优化；
