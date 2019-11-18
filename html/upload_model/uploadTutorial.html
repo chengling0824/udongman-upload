@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>优动漫 动漫创作支援平台</title>
+    <title>教程上传</title>
     <meta name="keywords" content="优动漫,绘画助手,绘画课程,在线练习,ClipStudioPaint,ComicStudio,IllustStudio,Retas,优漫,优绘,教程,素材,漫画,插画">
     <meta name="description" content="优动漫平台致力于为广大绘画爱好者提供专业的创作支持和帮助，包括在线课程、素材下载、在线练习等多种服务，以及绘画助手、Clip Studio Paint官方中文版、Comic Studio官方中文版、Retas官方中文版等众多软硬件工具。">
+    <link rel="stylesheet" href="../../css/reset.css">           
     <link rel="stylesheet" href="../../css/global.css">   
     <link rel="stylesheet" href="../../css/28-new-content-detail.css"> 
-    <link rel="stylesheet" href="../../css/upload_model/reset.css">
+    <link rel="stylesheet" href="../../css/new_style/base.css">
     <link rel="stylesheet" href="../../css/upload_model/upload.css">
     <link rel="stylesheet" href="../../css/upload_model/cropper.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- 编辑器 -->
-    <!-- <script src="../ueditor/ueditor.config.js"></script>
-    <script src="../ueditor/ueditor.all.js"></script> -->
 </head>
 <body>
 <div class="wrap">
@@ -67,7 +64,7 @@
                 <span>”为必填项，请填写完整后再发布哦~</span>
             </div>
 
-            <div class="text-editor">
+            <div class="text-editor" id="richText_box">
                 <div class="title-box">
                     <a class="required">●</a>
                     <span>教程内容</span>
@@ -76,23 +73,26 @@
                 <div id="editor" class="upload-editor"></div>
             </div>
 
-            <div class="upload-cover">
+            <div class="upload-cover" id="upCover_box">
                 <div class="title-box">
                     <a class="required">●</a>
                     <span>教程封面</span>
-                    <span class="info">当前裁剪尺寸：1200*1200，建议尺寸：800*800或以上</span>
+                    <span class="info"></span>
                 </div>
                 <div class="coverRow">
                     <div class="cover-prior">
                         <div class="img-container cropper-bg">
                             <div class="upCoverBtn-prior">
                                 <div class="upCoverBtn-1"></div>
-                                <input type="file" accept="image/*" class="upCoverBtn-2" value>
+                                <input type="file" accept="image/*" class="upCoverBtn-2" title="">
                                 <p>点击上传封面</p>
                             </div>
                             <img class="cropper" src="" id="cropperImg" alt="Picture" >
                         </div>
-                        <a class="re-upload">重新上传</a>
+                        <div class="re-upload">
+                            <label for="resetUploadImg">重新上传</label>
+                            <input type="file" id="resetUploadImg" accept="image/*">
+                        </div>
                     </div>
                     <div class="cover-after">
                         <div class="img-preview preview-lg" ></div>
@@ -111,29 +111,42 @@
                 </div>
                 <div class="upload-title">
                     <label for="upload_title">教程标题：</label>
-                    <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入素材标题" >
-                    <span class="txtInput-info">30/30</span>                    
+                    <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入教程标题" >
+                    <span class="txtInput-info">0/30</span>                    
                 </div>
                 <div class="upload-type">
                     <label for="upload_type">内容属性：</label>
                     <select name="" id="course_Type" class="contentType_1">
-                        <option value="0" disabled selected>请选择</option>
+                        <option value="0" disabled selected style="color: #cccccc">请选择</option>
                         <option value="1" >请选我</option>
                     </select>
                     <select name="" id="course_Type_Sec" class="contentType_2">
-                        <option value="0" disabled selected>请选择</option>
-                        <option value="1" >请选我</option>
-                    </select>
-                </div>
-                <div class="upload-tag">
-                    <label for="input_tags">教程标签：</label>
-                    <div class="tagInput-box" id="tags">
-                        <input class="input_content" placeholder="按下回车创建标签" / />
-                        <input type="text" class="input_tags" id="input_tags" name="" value="故事漫画" />
+                        <option value="0" disabled selected style="color: #cccccc">请选择</option>
+                            <option value="1">请选我</option>
+                        </select>
                     </div>
-                    <span class="txtInput-info"></span>
-                    <ul class="tag-provide" id="tag_provide">
-                        <li>测试</li>
+                    <div class="upload-type">
+                        <label for="upload_type">工具属性：</label>
+                        <select name="" id="catid" class="contentType_1">
+                            <option value="0" disabled="" selected="" style="color: #cccccc">请选择</option>
+                            <option value="38">素材</option>
+                            <option value="39">教程</option>
+                            <option value="40">作品</option>
+                            <option value="37">工具</option>
+                            <option value="53301530">练习</option>
+                            <option value="53301541">经典课程</option>
+                            <option value="111111144">字体分类</option>
+                        </select>
+                    </div>
+                    <div class="upload-tag">
+                        <label for="input_tags">教程标签：</label>
+                        <div class="tagInput-box" id="tags">
+                            <input class="input_content" placeholder="按下回车创建标签" / />
+                            <input type="text" class="input_tags" id="input_tags" name="" value="" />
+                            <p class="tag-txtInput-info">请使用空格或回车创建标签</p>
+                        </div>
+                        <ul class="tag-provide" id="tag_provide">
+                            <li>测试</li>
                         <li>故事漫画</li>
                         <li>故事</li>
                         <li>漫画</li>
@@ -142,23 +155,32 @@
                     </ul>
                 </div>
                 <div class="upload-price">
-                        <label>教程价格：</label>
-                        <input type="text" class="input-price course-price">
-                        <span class="price-unit">个积分</span>
-                        <!-- <div class="info">
-                            <div class="infoIcon"></div>
-                            <p>点数设置在2个及以上才可获得收益。</p>
-                        </div> -->
+                    <label>教程价格：</label>
+                    <input type="text" class="input-price course-price" id="course_Price" placeholder="0">
+                    <span class="price-unit">积分</span>
+
+                    <div class="info">
+                        <p>*价格设置不超过1000积分</p>
                     </div>
+                </div>
                 <div class="upload-brief">
                     <label for="">教程简介：</label>
                     <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入教程介绍"></textarea>
-                    <span class="txtInput-info">280/280</span>                    
+                    <span class="txtInput-info">0/280</span>                    
                 </div>
             </div>
-            <input type="button" value="提交发布" id="sub_Btn" class="uploadButton">
-            <input type="button" value="提交发布" id="nc" class="uploadButton" style="display: none">
+            <div class="upload-model-text model-select ">
+                <span class="seld-agree selectd-box seld-agree-btn seld_img"></span>
+                <span class="seld-agree">我已经阅读并接受<a>优动漫内容发布守则</a></span>
+            </div>
+            <span id='sub_Btn' class='uploadButton'>提交发布</span>
+            <div id="__nc" class="sliding">
+                <div id="nc" style="display: none;"></div>
+            </div>
         </div> 
+
+        <input type="hidden" id="cover_Img_Src">
+        <input type="hidden" name="submit_url" id="submit_url">
     </form>
 
     <!-- 页脚 -->
@@ -183,7 +205,37 @@
             <p> COPYRIGHT&copy;厦门优莱柏网络科技有限公司 版权所有 &nbsp&nbsp&nbsp&nbsp 闽ICP备12010450号-2&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp闽网文[2016]1301-018号 </p>
         </div>
     </div>
-
+    <script src="../../js/plugins/wangEditor.min.js"></script>
+    <div class="message-box-wrap" id='upload_Success_Model' style="display: none;">
+        <div class="message-mask"></div>
+        <div class="message-box">
+            <div class="message-box-tit">
+                <a class="message-box-close" id='upload_Close_Suc_Btn'></a>
+                <span>提示</span>
+            </div>
+            <div class="message-box-content">
+                            <p class="center">发布成功！ </p>
+                        </div>
+            <div class="message-box-btn">
+                <div class="btnGroup">
+                    <a class="btn primary" id='add_pub_Continue_Btn'>继续发布</a>
+                    <a class="btn primary" id='pub_Preview_Btn'>立即查看</a>
+                </div>
+            </div>
+            <div class="message-box-assist" style="display: none;">
+                <!-- look for help -->
+                <p>
+                    <span></span>
+                    <a href="" target="_blank" class="help">查看帮助</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="../../ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="../../ueditor/ueditor.all.js"></script>
     <script src="../../js/plugins/require.js" defer async="true" data-main="../../js/upload_model/tutorialUpload"></script>
 
 

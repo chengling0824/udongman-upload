@@ -130,14 +130,14 @@
                     </tbody>
                 </table>
             </div>
-            <form id="pay_submit" action="/index.php?m=shop&c=udm_payment&a=create_font_order_and_qrcode_pay" method="post" onsubmit="javascript:return fontUserInfo.toPay();">
+            <form id="pay_submit" action="/index.php?m=shop&c=udm_payment&a=create_font_order_and_qrcode_pay" method="post" >
                 <div class="font-display font-block-padding font-author-con">
                     <div class="tit-box font-model">
                         <h2 class="tit">被授权方信息<span class="font-notice">(为保证您的权益，请认真填写并核对，订单提交后不可再修改)</span></h2>
                     </div>
                     <div class="font-form-box">
                         <div class="form-group">
-                            <label for="name" class="input-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名: </label>
+                            <label for="name" class="input-label">用户姓名: </label>
                             <input type="text" class="nomal-input" id="input_name" maxlength="100">
                             <span class="nomal-check alipay-name">请输入姓名</span>
                         </div>
@@ -152,9 +152,9 @@
                             <span class="nomal-check alipay-name">请输入企业名称</span>
                         </div>
                         <div class="form-group">
-                            <label for="" class="input-label">企业代码: </label>
+                            <label for="" class="input-label">信用代码: </label>
                             <input type="text" class="nomal-input" id="company_code" maxlength="20">
-                            <span class="nomal-check">请输入您的企业代码</span>
+                            <span class="nomal-check">请输入统一社会信用代码</span>
                         </div>
                         <div class="form-group">
                             <label for="" class="input-label">手机号码: </label>
@@ -184,8 +184,8 @@
                     </div>
                     <div class="font-pay-right go-to-pay">
                         <div>
-                            <button id="go_to_pay" type="submit">去支付</button>
-                            <a href="">联系客服</a>
+                            <button id="go_to_pay" type="button">去支付</button>
+                            <a href="http://wpa.qq.com/msgrd?v=3&uin=2754376380&site=qq&menu=yes" target="_blank">联系客服</a>
                         </div>
                     </div>
                 </div>
@@ -205,20 +205,20 @@
                 </a>
                 </div>
                 <ul class="bottom-link">
-                <li><a href="../../../../udongman3/udongman/html">关于我们</a></li>
+                <li><a href="../">关于我们</a></li>
                 <li class="separate"></li>
-                <li><a href="../../../../udongman3/udongman/html">平台规范</a></li>
+                <li><a href="../">平台规范</a></li>
                 <li class="separate"></li>
-                <li><a href="../../../../udongman3/udongman/html">意见反馈</a></li>
+                <li><a href="../">意见反馈</a></li>
                 <li class="separate"></li>
-                <li><a href="../../../../udongman3/udongman/html">常见问题</a></li>
+                <li><a href="../">常见问题</a></li>
                 <li class="separate"></li>
-                <li><a href="../../../../udongman3/udongman/html">U问U答</a></li>
+                <li><a href="../">U问U答</a></li>
                 </ul>
                 <p> COPYRIGHT©厦门优莱柏网络科技有限公司&nbsp版权所有&nbsp&nbsp&nbsp&nbsp闽ICP备12010450号-2 </p>
             </div>
         </div>
-        <script type="text/javascript" src="../../js/plugins/require.js" data-main="../../build/font_product/fontProductInfo.js"></script>
+        <script type="text/javascript" src="../../js/plugins/require.js" data-main="../../js/font_product/fontProductInfo.js"></script>
     </div>
 </body>
 </html>

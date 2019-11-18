@@ -70,6 +70,88 @@
     z-index: -1;
 }
 
+.radio-input-box:before {
+    content: "";
+    display: table;
+}
+
+.radio-input-box:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.radio-input { 
+    position: relative;
+    float: left;
+    margin-right: 20px;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+}
+
+.radio-input.disabled{
+    color:#aeaeae;
+}
+
+.radio-input:last-child { 
+    margin-right: 0;
+}
+
+.radio-input label { 
+    display: block; 
+    width: 50px; 
+    height: 40px; 
+    line-height: 40px; 
+    cursor: pointer; 
+}
+
+.radio-input input { 
+    z-index: 3; 
+    display: block; 
+    opacity: 0; 
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 50px; 
+    margin: auto; 
+    width: 30px; 
+    height: 30px; 
+    cursor: pointer; 
+}
+
+.radio-input .user-defined { 
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #aeaeae;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.radio-input .user-defined span.circle  { 
+    display: block; 
+    width: 10px;
+    height: 10px;
+    margin-top: 2px;
+    margin-left: 2px;
+    background-color: transparent; 
+    border-radius: 50%; 
+}
+
+.radio-input .user-defined.active {
+    border-color: #02b0e9;
+}
+.radio-input .user-defined.active span { 
+    background-color: #02b0e9; 
+}
+
 /* 消息弹窗 */
 .message-mask {
     position: fixed;
@@ -149,6 +231,15 @@
     font-size: 14px;
     margin-top: 10px;
 }
+
+.message-box-wrap .message-box .message-box-content .center{
+    text-align: center;
+}
+
+.message-box-wrap .message-box .message-box-content input[type="text"]:focus{
+    border: 1px solid #02b0e9;
+    box-shadow: 0 0 3px 0 #02b0e9;
+}
 .message-box-wrap .message-box .message-box-content a{
     color: #02b0e9;
     text-decoration: underline;
@@ -224,7 +315,7 @@
 .message-box-wrap .message-box .message-box-btn .btn {
     display: inline-block;
     height: 36px;
-    line-height: 36px;
+    line-height: 34px;
     padding: 0 20px;
     border-radius: 4px;
     font-size: 16px;
@@ -267,6 +358,7 @@
     padding: 10px;
     box-sizing: border-box;
     color: #fff;
+    font-size: 14px;
     overflow: hidden;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -312,6 +404,7 @@
     box-shadow:0 5px 10px -5px #EF4849;
     color: #fff;
     background-image: none !important; 
+    padding: 10px 0;
 }
 
 .toast-item-wrapper.notice {
@@ -368,7 +461,7 @@
 }
 
 .toast-item-wrapper .toast-message {
-    font-size: 0.87rem;
+    font-size: 14px;
 }
 
 .toast-item-wrapper .toast-progress {
@@ -407,7 +500,11 @@
 
 /* 平台按钮通用样式 */
 .btn-regular{
+    box-sizing: border-box;
     display: inline-block;
+    height:36px;
+    line-height: 36px;
+    padding: 0 20px;
     color: #ffffff;
     font-size: 16px;
     font-family: 'MicrosoftYaHeiUI';

@@ -1,5 +1,5 @@
 // alert
-(function(){
+(function($){
 	$.UdmAlert = function(popHtml, type, options) {
 	    var btnType = $.UdmAlert.btnEnum;
 		var eventType = $.UdmAlert.eventEnum;
@@ -56,7 +56,8 @@
 			onClose: $.noop//弹窗关闭的回调,返回触发事件
 		}, itype, options);
 		
-		var $txt = $("<p>").html(popHtml);//弹窗文本dom
+        var $txt = $("<p>").html(popHtml);//弹窗文本dom
+        var $assistTxt = $("<p>").html(config.assistText || '');//辅助信息文本文本dom
 		var $tt = $("<span>").text(config.title);//标题
 		var icon = config.icon;
 		var $icon = icon ? $("<div>").addClass("bigIcon").css("backgroundPosition",icon) : "";
@@ -70,9 +71,10 @@
 		var $ttBox = $("<div>").addClass("message-box-tit");//弹窗顶部区域
 		var $txtBox = $("<div>").addClass("message-box-content");//弹窗内容主体区
 		var $btnArea = $("<div>").addClass("message-box-btn");//按钮区域
-		
+        var $assistInfo = $("<div>").addClass("message-box-assist");//按钮下辅助信息区
+        
 		var $ok = $("<a>").addClass(config.btnClass).addClass("ok").text(config.btnText);//确定按钮
-		var $cancel = $("<a>").addClass("sgBtn").addClass("cancel").text("取消");//取消按钮
+		var $cancel = $("<a>").addClass(config.btnCancelClass).addClass("cancel").text("取消");//取消按钮
 		var $input = $("<input>").addClass("inputBox");//输入框
 		var $clsBtn = $("<a>").addClass("message-box-close");//关闭按钮
 		
@@ -105,7 +107,9 @@
 				$txtBox.append($icon).append($txt)
 			).append(
 				$btnArea.append(creatBtnGroup(btn))
-			);
+			).append(
+                $assistInfo.append($assistTxt)
+            );
 			$box.attr("id", popId).append($layer).append($popBox);
 			$("body").append($box);
 		}
@@ -132,14 +136,16 @@
 
 		//确认按钮事件
 		function doOk(){
-			var $o = $(this);
-			var v = $.trim($input.val());
-			if ($input.is(":visible"))
-		        config.onOk(v);
-		    else
+            var $o = $(this);
+            var len = $("#" + popId + " input").length;
+            if ( len > 0){
+                var v = $.trim($("#" + popId + " input").val());
+                config.onOk(v,popId); 
+            }else{
 		        config.onOk();
-			$("#" + popId).remove(); 
-			config.onClose(eventType.ok);
+                $("#" + popId).remove(); 
+                config.onClose(eventType.ok);
+            }
 		}
 		
 		//取消按钮事件
@@ -204,10 +210,10 @@
 		custom: "custom"
 	};
 
-})();
+})(jQuery);
 
 // toast
-(function(){
+(function($){
     "use strict";
     $.UdmToast = function(title, message, type, options){
         var defaultOptions = {
@@ -370,4 +376,4 @@
 			$element.remove();
 		}        
     }
-})();
+})(jQuery);

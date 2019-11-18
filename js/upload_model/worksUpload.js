@@ -1,175 +1,222 @@
 requirejs(['../commonConfig'],function(com){ 
-    requirejs(['jquery','uploadCommonJs','multiImageJS'],function($,common,multiImage){
-        //在点击确定后，根据界面上的图片属性构造content的value
-        function fillContent(){
-            //content清空
-            $('#content').val('');
-            //根据imgWrap来组织content
-            var content='';
-            $('.imgWrap').each(function(i)
-            {
-                var imgsrc = $(this).html();
-                //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
-                var is_uploaded = isUploaded(imgsrc);
-                if(is_uploaded)
-                {
-                    content  += imgsrc + '<hr />';
-                }
-            });
-            $('#content').val(content);
-        }
+    requirejs(['multiImageJS','uploadCommonJs'],function(multiImage,common){
+        
+        // Global variables
+        var agreeFlag = true;
+        var checkFormFlag = true;
+        var nc = common.ncInit();
+        var theRequest = common.GetRequest();   //判断是否为编辑页
 
-        //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
-        function isUploaded(imgsrc)
-        {
-            var pos = imgsrc.indexOf("http");
-            if ( pos > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        function checkForm(){
-            
-            //图片
-            if($(".img-bg").length != 0){
-                //var ele = $(".img-bg")
-                // var ele = $(".progress");
-                // for(var i=0;i<ele.length;i++){
-                //     if(ele[i].style.display != 'none'){
-                //         alert('素材内容图片尚未上传完成');
-                //         checkFormFlag = false
-                //         return false;
-                //     }else{
-                //         checkFormFlag = true
-                //     }
-                // }
-                // var failEle = $('.upload-fail')
-                // for(var j=0;j<failEle.length;j++){
-                //     if(failEle[j].style.display != '' && failEle[j].style.display != 'none'){
-                //         alert('素材内容图片有上传失败的');
-                //         checkFormFlag = false
-                //         return false;
-                //     }else{
-                //         checkFormFlag = true
-                //     }
-                }
-            
-            if($(".queueList li").length == 0){
-                alert('素材介绍图片不能少于1张');
-                checkFormFlag = false
-                return false;
-            }else{
-                fillContent();
-                checkFormFlag = true
-            }
-            //封面
-            var str = $(".img-preview img").attr('src');
-            if(str!=undefined){
-                checkFormFlag = true
-            }else{
-                alert('请上传封面');
-                checkFormFlag = false
-                return false;
-            }
 
-            //标题
-            var title = $('#upload_title');
-            var title_len = title.val().trim().length;
-            if(title_len < 2 || title_len > 30){
-                alert('请填写标题，字数在2~30字之间');
-                title.focus();
-                checkFormFlag = false
-                return false;
+        nc.on('success', function (e) {
+            checkForm();
+            if(checkFormFlag == false){
+                common.ncReset(nc);
             }else{
-                checkFormFlag = true
+                subToApply();
             }
-            // 类型
-            var type = $('#upload_type');
+        })
+        
+        var checkForm = function(){
+            checkFormFlag = common.checkImg(checkFormFlag);   //多图
+            if(checkFormFlag == false){
+                return false;
+            }
+            checkFormFlag = common.checkCover(checkFormFlag);    //封面
+            if(checkFormFlag == false){
+                return false;
+            }
+            checkFormFlag = common.checkTitle(checkFormFlag);   //标题
+            if(checkFormFlag == false){
+                return false;
+            }
+            var type = $('#upload_type');       // 类型
             if(type.val() == '0'){
-                alert('请选择作品类型');
+                type.addClass('warnBorder');
                 type.focus();
                 checkFormFlag = false
                 return false;
             }
-    
-            //标签
-            var title_len = $('.tagInput-box').find('span').length;
-            var tag = $('.input_content');
-            if (title_len < 1) {
-                alert('请选择或键入标签');
-                tag.focus();
-                checkFormFlag = false
+            type.removeClass('warnBorder');
+            checkFormFlag = common.checkTag(checkFormFlag); //标签
+            if(checkFormFlag == false){
                 return false;
-            } else {
-                checkFormFlag = true
             }
-    
-            //简介
-            var desc = $('#describe_inp');
-            var desc_len = desc.val().trim().length;
-            if(desc_len < 1 || desc_len > 280){
-                alert('请填写教程简介，字数在1~280字之间');
-                desc.focus();
-                checkFormFlag = false
+            checkFormFlag = common.checkDescribe(checkFormFlag); //简介
+            if(checkFormFlag == false){
                 return false;
-            }else{
-                checkFormFlag = true
             }
-            
-    
-            //验证码
-            if($("#verifyCodeInp").length > 0) {
-                var verifyCodeInp = $("#verifyCodeInp").val();
-                $.ajax({
-                    type: "GET",
-                    async: false,//同步执行
-                    url: "index.php?m=member&c=index&a=public_verifyCode_ajax",
-                    data: {verifyCodeInp: $("#verifyCodeInp").val()},
-                    //dataType: "json",
-                    success: function (data) {
-                        if (data === '1') {
-                            checkFormFlag = true;
-                        } else {
-                            alert('请输入正确的验证码');
-                            checkFormFlag = false;
-                            return false;
-                        }
-                    }
-                });
+            if(agreeFlag == false){
+                checkFormFlag = false
+                common.alertTost('请阅读并接受优动漫内容发布守则','error')
+                return false;
             }
         }
 
+         //是否添加水印
+         var imgFlag = false
+         var selectTag;
+         $('#img_Bg_Flag').click(function(){
+             if(imgFlag == false){
+                 imgFlag = true  //添加水印
+                 $(this).addClass('seld_img')
+             }else{
+                 imgFlag = false  //不添加水印
+                 $(this).removeClass('seld_img')
+             }
+         })
+         if (imgFlag == true) {
+             var waterFlag = 0
+         } else {
+             var waterFlag = 1
+         }
+
+        var subToApply = function(){
+            var statist = {
+                eventid: '110803',
+                eventparam: {
+                    click: 'publish'
+                }
+            }
+
+            tongji.setStatisticsData(statist);
+
+            var nc_token = ncData.token,
+            csessionid = ncData.csessionid,
+            sig = ncData.sig,
+            scene = "nc_register";
+            
+            $(document).unbind("scroll.unable");
+            $("#upload_Model").hide()
+            $("#bg").hide()
+            common.fillContent();
+            common.publicIng()  //发布按钮不可点击
+            
+            ///ajax提交argument
+            var metTit = $('#upload_title').val()   //标题
+            var metType = $("#upload_type").find("option:selected").val(); //类型
+            var metTag =  common.getSign(); //标签
+            var metDescribe = $('#describe_inp').val()  //简介
+            var verifyCodeInp = $("#verifyCodeInp").val() || '';
+            var metThumb = $("#cover_Img_Src").val();
+            if (metThumb.indexOf('http') == -1 ){
+                common.uploadImg()
+            }
+            if (theRequest.c == "edit_add"){
+                var postURL = 'index.php?m=works&c=edit_add&a=edit_add';
+            }else{
+                var postURL = 'index.php?m=works&c=add&a=add_add';
+            }
+            $.ajax({
+                type: 'post',
+                url: postURL,
+                data: {
+                    'dosubmit': 1,
+                    'info[title]': metTit,
+                    'info[catid]': metType,
+                    'info[keyword]': metTag,
+                    'info[desc]': metDescribe,
+                    'info[watermark_disable]': waterFlag,
+                    'info[content]': $("#content").val(),
+                    'info[thumb_val]': $("#cover_Img_Src").val(),
+                    'info[verifyCodeInp]':verifyCodeInp,
+                    'ob_id':$("#ob_id").val(),
+                    'info[sig]':sig,
+                    'info[sessionid]':csessionid,
+                    'info[token]': nc_token,
+                    'info[scene]': scene,
+                },
+                dataType: 'json',               
+                success: function (data) {
+                    if(data.error == 0){
+                        $(document).unbind("scroll.unable");
+                        common.shareWorks('works');
+                    }
+                    else if (data.error == 1){
+                        common.alertTost('请先登录','error')
+                        common.ncReset(nc);
+                    }else if (data.error == 2){
+                        common.alertTost('验证失败，请重试','error')
+                        common.ncReset(nc);
+                    }else if (data.error == 3|| data.error == 4|| data.error == 12){
+                        common.checkTitle(checkFormFlag);
+                        common.ncReset(nc);
+                    }else if (data.error == 5){
+                        var type = $('#upload_type');       // 类型
+                        if(type.val() == '0'){
+                            type.addClass('warnBorder');
+                            type.focus();
+                            checkFormFlag = false
+                            return false;
+                        }
+                        common.ncReset(nc);
+                    }else if (data.error == 6|| data.error == 9){
+                        common.checkDescribe(checkFormFlag);
+                        common.ncReset(nc);
+                    }else if (data.error == 7|| data.error == 10 ||data.error == 11){
+                        common.checkTag(checkFormFlag);
+                        common.ncReset(nc);
+                    }else if(data.error == 8){
+                        common.checkImg(checkFormFlag);
+                        common.ncReset(nc);
+                    }
+                    else{
+						alert(data.msg);
+                        common.ncReset(nc);
+					}
+                },
+                error: function () {
+                    common.ncReset(nc);
+                    common.alertTost('提交失败','error')
+                },
+            });
+        }
 
         $(function(){
-            // 图片上传
-            multiImage.uploadInit();
-
-            // 素材封面上传
-            common.coverImg();
-
-            //  字符检验
-            common.TextBox('#upload_title','30');
-            common.TextBox('#describe_inp','280');
+            //作品不限制分辨率
+            multiImage.uploadInit('20','works',true);    // 图片上传
             
-            //  标签选择
-            common.tagboxInit('5');
+            if (theRequest.c == "edit_add"){
+                var files = $("#imgs").val();
+                files = window.atob(files); //解码
+                files = eval(files);
+                multiImage.addFileImg(files,20);
+            }else{
+                $("html,body").animate({ scrollTop: "0" }, 500);
+            }
+            common.coverImg();  // 素材封面上传
+            common.TextBox('#upload_title','30');   //  字符检验
+            common.TextBox('#describe_inp','280');
+            common.tagboxInit('20'); //  标签选择
 
-            // 提交验证
-            $("#sub_Btn").click(function(){
-                //先校验表单信息是否填写完整
-                checkForm()
+            $('.seld-agree').click(function () {
+                agreeFlag = common.agreeContent(agreeFlag);
+            })
+            $("#sub_Btn").click(function(){ // 提交
+                checkForm() //先校验表单信息是否填写完整
                 if(checkFormFlag == false ){
                     return
                 }else{
                     $('#sub_Btn').hide();
                     $('#nc').show();
+                    // subToApply();
                 }
             })
 
+            var statistics = {
+                eventid: '110801',
+                eventparam: {
+                    fromUrl: window.location.href
+                }
+            }
 
+            tongji.setStatisticsData(statistics);
+
+            common.closeModel();
 
         })
+
+       
         
     })
 })

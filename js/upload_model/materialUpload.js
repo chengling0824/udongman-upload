@@ -1,22 +1,38 @@
 requirejs(['../commonConfig'],function(com){ 
-    requirejs(['jquery','uploadCommonJs','multiImageJS','webuploaderJS','workUploadJS'],function($,common,multiImage,Webuploader,workupload){
-    // requirejs(['jquery','uploadCommonJs','uploadJS'],function($,common,uploader){
+    requirejs(['multiImageJS','workUploadJS','uploadCommonJs'],function(multiImage,workupload,common){
+        
+        // Global variables
+        var agreeFlag = true;
+        var checkFormFlag = true;
+        var nc = common.ncInit();
+        var theRequest = common.GetRequest();   //判断是否为编辑页
 
-        var materialType =function() {
-            $('#upload_type').change(function(){
+        nc.on('success', function (e) {
+            checkForm();
+            if(checkFormFlag == false){
+                common.ncReset(nc);
+            }else{
+                subToApply();
+            }
+        })
+
+        var materialApplication = function () {
+            $('#upload_type').change(function () {
                 var material_type = $('#upload_type').val();
                 $.ajax({
                     type: 'POST',
                     url: '/index.php?m=material&c=add&a=getMaterialApply',
-                    data:{ 'type':material_type },
-                    success:function(res){
+                    data: {
+                        'type': material_type
+                    },
+                    success: function (res) {
                         // 显示对应“应用于”标签内容
-                        $('.material-application').hide();
+                        $('.material-application').show();
                         $('.material-application ul').html('');
                         if (res && res.length > 0) {
                             var str = addApplicationSign(res);
-                        }else{
-                            var str = '<span applyid="0">其他</span>'
+                        } else {
+                            var str = '<li><span applyid="0">其他</span></li>'
                         }
                         $('.material-application ul').html(str);
                         $('.material-application').show();
@@ -24,275 +40,360 @@ requirejs(['../commonConfig'],function(com){
                 })
             })
         }
-        var addApplicationSign = function(res){
+        var addApplicationSign = function (res) {
             var str = '';
-            res.forEach(function(item,index){
-                str += '<span applyid="'+ item.applyid+'">'+ item.applyname +'</span>';
+            res.forEach(function (item, index) {
+                str += '<li><span applyid="' + item.applyid + '">' + item.applyname + '</span></li>';
             })
             return str;
         }
-        var applicationChecked = function(){
-            $('.material-application').on('click','li',function(){
-                if($(this).hasClass('active')){
+        var getMateralApply = function () { //获取已选素材应用
+            var tag = new Array();
+            $('.material-application li.active').each(function () {
+                tag.push($(this).text());
+            })
+            return tag;
+        }
+        var applicationChecked = function () {
+            $('.material-application').on('click', 'li', function () {
+                if ($(this).hasClass('active')) {
                     $(this).removeClass('active');
-                }else{
+                } else {
                     $(this).addClass('active');
                 }
             })
         }
+        var checkForm = function () {
+            checkFormFlag = checkMalFile(checkFormFlag); //素材文件
+            if (checkFormFlag == false) {
+                return false;
+            }
 
-        //在点击确定后，根据界面上的图片属性构造content的value
-        function fillContent(){
-            //content清空
-            $('#content').val('');
-            //根据imgWrap来组织content
-            var content='';
-            $('.imgWrap').each(function(i)
-            {
-                var imgsrc = $(this).html();
-                //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
-                var is_uploaded = isUploaded(imgsrc);
-                if(is_uploaded)
-                {
-                    content  += imgsrc + '<hr />';
-                }
-            });
-            $('#content').val(content);
-        }
+            checkFormFlag = common.checkImg(checkFormFlag); //多图
+            if (checkFormFlag == false) {
+                return false;
+            }
+            checkFormFlag = common.checkCover(checkFormFlag); //封面
+            if (checkFormFlag == false) {
+                return false;
+            }
+            checkFormFlag = common.checkTitle(checkFormFlag); //标题
+            if (checkFormFlag == false) {
+                return false;
+            }
+            checkFormFlag = checkMalType(checkFormFlag); //类型
+            if (checkFormFlag == false) {
+                return false;
+            }
 
-        //判断图片是否已上传，如果imgsrc中含有 http 表明已经上传
-        function isUploaded(imgsrc)
-        {
-            var pos = imgsrc.indexOf("http");
-            if ( pos > 0)
-            {
-                return true;
+            checkFormFlag = common.checkTag(checkFormFlag); //标签
+            if (checkFormFlag == false) {
+                return false
             }
-            return false;
+            checkFormFlag = checkPoint(checkFormFlag); //价格
+            if (checkFormFlag == false) {
+                return false;
+            }
+            checkFormFlag = common.checkDescribe(checkFormFlag); //简介
+            if (checkFormFlag == false) {
+                return false;
+            }
+            if (agreeFlag == false) {
+                checkFormFlag = false
+                common.alertTost('请阅读并接受优动漫内容发布守则', 'error')
+                return false;
+            }
+            return checkFormFlag;
         }
-        function checkForm(){
-            //素材文件
-            if($("#file_Name").val() == ''){
-                alert('请上传素材文件');
-                checkFormFlag = false
-                return false;
-            }else{
-                if($('#mat_Upload_Err').text() != '已上传.'){
-                    alert('素材文件未上传成功');
-                    checkFormFlag = false
-                    return false;
-                }else{
-                    checkFormFlag = true
+        var checkMalFile = function (checkFormFlag) {
+            var warning_info = '<p class="warning-info"><span class="tishi"></span>未填写完成<p>';
+            if ($('#fileURL').val() == '') { //素材文件
+                if ($('#fileUp_box .warning-info').length < 1) {
+                    $('#fileUp_box .title-box').append(warning_info);
                 }
-            }
-            //图片
-            if($(".img-bg").length != 0){
-                //var ele = $(".img-bg")
-                // var ele = $(".progress");
-                // for(var i=0;i<ele.length;i++){
-                //     if(ele[i].style.display != 'none'){
-                //         alert('素材内容图片尚未上传完成');
-                //         checkFormFlag = false
-                //         return false;
-                //     }else{
-                //         checkFormFlag = true
-                //     }
-                // }
-                // var failEle = $('.upload-fail')
-                // for(var j=0;j<failEle.length;j++){
-                //     if(failEle[j].style.display != '' && failEle[j].style.display != 'none'){
-                //         alert('素材内容图片有上传失败的');
-                //         checkFormFlag = false
-                //         return false;
-                //     }else{
-                //         checkFormFlag = true
-                //     }
-                }
-            
-            if($(".queueList li").length == 0){
-                alert('素材介绍图片不能少于1张');
-                checkFormFlag = false
-                return false;
-            }else{
-                fillContent();
-                checkFormFlag = true
-            }
-            //封面
-            var str = $(".img-preview img").attr('src');
-            if(str!=undefined){
-                checkFormFlag = true
-            }else{
-                alert('请上传封面');
-                checkFormFlag = false
-                return false;
-            }
-            //标题
-            var title = $('#upload_title');
-            var title_len = title.val().trim().length;
-            if(title_len < 2 || title_len > 30 ){
-                alert('请填写标题，字数在2~30字之间');
-                title.focus();
-                checkFormFlag = false
-                return false;
-            }else{
-                checkFormFlag = true
-            }
-            //类型
-            var type = $('#upload_type')
-            if(type.val() == '0'){
-                alert('请选择素材类型');
-                type.focus();
-                checkFormFlag = false
-                return false;
-            }else{
-                if($('.material-application li.active').length == 0){
-                    alert('请选择素材应用');
-                    type.focus();
-                    checkFormFlag = false
-                    return false;
-                }else{
-                    checkFormFlag = true
-                }
-            }
-            //标签
-            var title_len = $('.tagInput-box').find('span').length;
-            var tag = $('.input_content');
-            if (title_len < 1) {
-                alert('请选择或键入标签');
-                tag.focus();
+                common.alertTost('素材文件未上传成功', 'error')
+                $('body,html').animate({
+                    scrollTop: $('#fileUp_box').offset().top - 200
+                }, 500);
                 checkFormFlag = false
                 return false;
             } else {
                 checkFormFlag = true
+                $('#fileUp_box .title-box').find('.warning-info').remove();
             }
-    
-            //价格  point
-            var point=$(".material-price");
+            return checkFormFlag;
+        }
+
+        var checkPoint = function (checkFormFlag) {
+            var point = $("#upload_Price"); //价格point
             var pointchecked = $('input:radio:checked').val();
-            if(point.val() != ""){
-                var repstr="^\\d+$";
+            var point_max = "1000";
+            var coin_max = "100";
+            point_max = parseInt(point_max);
+            coin_max = parseInt(coin_max);
+            if (point.val() != "") {
+                var repstr = "^\\d+$";
                 var repexp = new RegExp(repstr);
-                if(point.val().match(repexp)==null){
-                    alert('素材价格必须是正整数');
+                if (point.val().match(repexp) == null) {
+                    $('#upload_Price').addClass('warnBorder');
+                    $('body,html').animate({
+                        scrollTop: $('#upload_Price').offset().top - 200
+                    }, 500);
                     point.focus();
                     checkFormFlag = false;
                     return false;
-                }
-                else{
-                    if (pointchecked == 'integration_option'){
-                        if(point.val() > 400){
-                            alert('素材价格不能大于1000积分');
+                } else {
+                    if (pointchecked == 'integration_option') {
+                        if (point.val() > point_max) {
+                            $('#upload_Price').addClass('warnBorder');
+                            $('.upload-price .info').css({
+                                'color': '#ef4849'
+                            });
+                            $('body,html').animate({
+                                scrollTop: $('#upload_Price').offset().top - 200
+                            }, 500);
                             point.focus();
                             checkFormFlag = false;
                             return false;
                         }
-                    }else{
-                        if(point.val() > 100){
-                            alert('素材价格不能大于100金币');
+                    } else {
+                        if (point.val() > coin_max) {
+                            $('#upload_Price').addClass('warnBorder');
+                            $('.upload-price .info').css({
+                                'color': '#ef4849'
+                            });
+                            $('body,html').animate({
+                                scrollTop: $('#upload_Price').offset().top - 200
+                            }, 500);
                             point.focus();
                             checkFormFlag = false;
                             return false;
                         }
                     }
-                    checkFormFlag = true
                 }
-            }else{
-                alert('请输入素材价格');
-                return false;
-                // $("#course_Price").val(0)
+            } else {
+                checkFormFlag = true
+                $("#upload_Price").val(0)
+                $('#upload_Price').removeClass('warnBorder');
+
             }
-    
-            //简介
-            var desc = $('#describe_inp');
-            var desc_len = desc.val().trim().length;
-            if(desc_len < 1 || desc_len > 280){
-                alert('请填写素材简介，字数在1~280字之间');
-                desc.focus();
+            return checkFormFlag;
+        }
+        var checkMalType = function (checkFormFlag) {
+            var warning_info = '<p class="warning-info"><span class="tishi"></span>未填写完成<p>';
+            var type = $('#upload_type') //类型
+            if (type.val() == '0') {
+                $('#upload_type').addClass('warnBorder');
+                type.focus();
                 checkFormFlag = false
                 return false;
-            }else{
-                checkFormFlag = true
-            }
-    
-            //验证码
-            if($("#verifyCodeInp").length > 0) {
-                var verifyCodeInp = $("#verifyCodeInp").val();
-                $.ajax({
-                    type: "GET",
-                    async: false,//同步执行
-                    url: "index.php?m=member&c=index&a=public_verifyCode_ajax",
-                    data: {verifyCodeInp: $("#verifyCodeInp").val()},
-                    //dataType: "json",
-                    success: function (data) {
-                        if (data === '1') {
-                            checkFormFlag = true;
-                        } else {
-                            alert('请输入正确的验证码');
-                            checkFormFlag = false;
-                            return false;
-                        }
-                    }
-                });
-            }
-        }
-        
-
-
-        $(function(){
-            // 素材上传
-            var uploader = Webuploader.create({
-                // server: window.webuploader.uploadUrl, 
-                pick: {
-                    id:'#workPicker',
-                },
-                dnd: '.upWorkBox',
-                paste: document.body,
-                accept:{
-                    title: 'mtd',
-                    extensions: 'mtd',
-                    mimeTypes: 'mtd'
-                },
-                swf: "../../plugins/webuploader-0.1.5/Uploader.swf",
-                resize: false, 
-                chunked: true,
-                fileNumLimit: 1,
-                // fileSingleSizeLimit: 10*1024*1024,//限制大小10M，单文件
-                // fileSizeLimit: 10*1024*1024,//限制大小10M，所有被选文件，超出选择不上
-            });
-            workupload.init(uploader);
-
-            // 素材介绍上传
-            multiImage.uploadInit();
-            // uploader.uploadInit();
-
-            // 素材封面上传
-            common.coverImg();
-
-            //  字符检验
-            common.TextBox('#upload_title','30');
-            common.TextBox('#describe_inp','280');
-
-            // 素材应用的选择
-            applicationChecked();
-            
-            //  标签选择
-            common.tagboxInit('5');
-
-            // 提交验证
-            $("#sub_Btn").click(function(){
-                //先校验表单信息是否填写完整
-                checkForm()
-                if(checkFormFlag == false ){
-                    return
-                }else{
-                    $('#sub_Btn').hide();
-                    $('#nc').show();
+            } else {
+                $('#upload_type').removeClass('warnBorder');
+                if ($('.material-application li.active').length == 0) { //应用
+                    $('.material-application').append(warning_info);
+                    type.focus();
+                    checkFormFlag = false
+                    return false;
+                } else {
+                    $('.material-application').find('.warning-info').remove();
+                    checkFormFlag = true
                 }
+            }
+            return checkFormFlag;
+        }
+
+        //是否添加水印
+        var imgFlag = false
+        var selectTag;
+        $('#img_Bg_Flag').click(function () {
+            if (imgFlag == false) {
+                imgFlag = true //添加水印
+                $(this).addClass('seld_img')
+            } else {
+                imgFlag = false //不添加水印
+                $(this).removeClass('seld_img')
+            }
+        })
+        if (imgFlag == true) {
+            var waterFlag = 0
+        } else {
+            var waterFlag = 1
+        }
+
+        var subToApply = function () {
+            var statist = {
+                eventid: '090803',
+                eventparam: {
+                    click: 'publish'
+                }
+            }
+
+            tongji.setStatisticsData(statist);
+            
+            var nc_token = ncData.token,
+                csessionid = ncData.csessionid,
+                sig = ncData.sig,
+                scene = "nc_register";
+
+            $(document).unbind("scroll.unable");
+            $("#upload_Model").hide();
+            common.fillContent();
+            common.publicIng() //发布按钮不可点击
+
+            ///ajax提交argument
+            var metType = $("#upload_type").find("option:selected").val();
+            var metFile = $("#fileURL").val();
+            var metTit = $('#upload_title').val() //标题
+            var metType = $("#upload_type").find("option:selected").val(); //类型
+            var metApply = getMateralApply(); //应用
+            var metTag = common.getSign(); //标签
+            var metPointMaterial = 0;
+            var metCoinMaterial = 0;
+            var metPrice = $('#upload_Price').val() //价格
+            var metPriceId = $("[name='price_type']").filter(':checked').attr('id');
+            var metThumb = $("#cover_Img_Src").val();
+            if (metThumb.indexOf('http') == -1) {
+                common.uploadImg()
+            }
+            if (metPriceId != 'gold') {
+                metPointMaterial = metPrice;
+            } else {
+                metCoinMaterial = metPrice;
+            }
+            var metDescribe = $('#describe_inp').val() //简介
+            var verifyCodeInp = $("#verifyCodeInp").val() || '';
+
+            if (theRequest.c == "edit_add") {
+                var postURL = 'index.php?m=material&c=edit_add&a=edit_add'
+            } else {
+                var postURL = 'index.php?m=material&c=add&a=add_add'
+            }
+
+            $.ajax({
+                type: 'post',
+                url: postURL,
+                data: {
+                    'dosubmit': 1,
+                    'info[rar]': metFile,
+                    'info[title]': metTit,
+                    'info[catid]': metType,
+                    'info[apply]': metApply,
+                    'info[keyword]': metTag,
+                    'info[point]': metPointMaterial,
+                    'info[price_coin]': metCoinMaterial,
+                    'info[desc]': metDescribe,
+                    'info[watermark_disable]': waterFlag,
+                    'info[content]': $("#content").val(),
+                    'info[thumb_val]': $("#cover_Img_Src").val(),
+                    'info[verifyCodeInp]': verifyCodeInp,
+                    'ob_id': $("#ob_id").val(),
+                    'info[sig]': sig,
+                    'info[sessionid]': csessionid,
+                    'info[token]': nc_token,
+                    'info[scene]': scene
+                },
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.error == 0) {
+                        $(document).unbind("scroll.unable");
+                        common.shareWorks('material');
+                    } else if (data.error == 1) {
+                        common.alertTost('请先登录', 'error')
+                        common.ncReset(nc);
+                    } else if (data.error == 2) {
+                        common.alertTost('验证失败，请重试', 'error')
+                        common.ncReset(nc);
+                    } else if (data.error == 3 || data.error == 6) {
+                        common.checkTitle(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 4 || data.error == 5 || data.error == 7 || data.error == 14) {
+                        checkMalType(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 8 || data.error == 12) {
+                        common.checkDescribe(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 9 || data.error == 13 || data.error == 15 || data.error == 16) {
+                        common.checkTag(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 10) {
+                        common.checkImg(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 11) {
+                        checkMalFile(checkFormFlag);
+                        common.ncReset(nc);
+                    } else if (data.error == 17 || data.error == 18) {
+                        checkPoint(checkFormFlag);
+                        common.ncReset(nc);
+                    } else {
+                        var msg = data.msg;
+                        common.alertTost(msg, 'error')
+                        common.ncReset(nc);
+                    }
+                },
+                error: function () {
+                    common.alertTost('提交失败','error')
+                    common.ncReset(nc);
+                },
+            });
+        } //--subToApply over
+
+
+        $(function () {
+
+            workupload.material_upload();
+            // 多图上传
+            multiImage.uploadInit('20', 'material', true);
+            if (theRequest.c == "edit_add") {
+                $('.material-application').show();
+                var file_title = $('.file-title').text();
+                $('.file-title').attr('title', file_title);
+
+                var files = $("#imgs").val();
+                files = window.atob(files); //解码
+                files = eval(files);
+                multiImage.addFileImg(files, 20);
+            } else {
+                $("html,body").animate({
+                    scrollTop: "0"
+                }, 500);
+            }
+            common.coverImg(); // 封面
+            common.TextBox('#upload_title', '30'); //  字符检验
+            common.TextBox('#describe_inp', '280');
+            materialApplication(); //对应应用的生成
+            applicationChecked(); // 素材应用的选择
+            common.tagboxInit('20'); //  标签选择
+            common.priceKeyup(); //价格只允许输入数字
+            if ($(".price-radio-box").hasClass('disabled')) {
+                $('.price-radio-box.disabled').find('input').attr('disabled', 'true');
+            }
+
+            $('.seld-agree').click(function () {
+                agreeFlag = common.agreeContent(agreeFlag);
             })
 
+            var statistics = {
+                eventid: '090801',
+                eventparam: {
+                    fromUrl: window.location.href
+                }
+            }
 
+            tongji.setStatisticsData(statistics);
 
-        })
-        
+            $("#sub_Btn").click(function () {
+                //点击提交按钮
+                checkForm(); //先校验表单信息是否填写完整
+                if (checkFormFlag == false) {
+                    return;
+                } else {
+                    $("#sub_Btn").hide();
+                    $("#nc").show();
+                }
+            });
+
+            common.closeModel(); //发布成功model
+        });
     });
-})
+});

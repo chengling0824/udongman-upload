@@ -1,28 +1,17 @@
 .webuploader-container { position: relative; }
 .webuploader-element-invisible { 
     position: absolute !important; 
+    top: 0;
+    left: 0;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */ 
     clip: rect(1px,1px,1px,1px); 
     width:100%;
     height:100%;
 }
-#filePicker{
-    width: 160px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 16px;
-    position: relative;
-    color: #ffffff;
-    background: #02b0e9;
-    border-radius: 4px;
-    text-align: center;
-    transform: translateX(-50%);
-    left: 50%;
-    top: 56px;
-}
-.webuploader-pick { 
+
+/* .webuploader-pick { 
     width:100%;
     height:100%;
-}
-.webuploader-pick-hover { background: #00a2d4; }
+} */
+/* .webuploader-pick-hover { background: #00a2d4; } */
 .webuploader-pick-disable { opacity: 0.6; pointer-events: none; }

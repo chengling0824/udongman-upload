@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习上传</title>
+    <meta name="keywords" content="优动漫,绘画助手,绘画课程,在线练习,ClipStudioPaint,ComicStudio,IllustStudio,Retas,优漫,优绘,教程,素材,漫画,插画">
+    <meta name="description" content="优动漫平台致力于为广大绘画爱好者提供专业的创作支持和帮助，包括在线课程、素材下载、在线练习等多种服务，以及绘画助手、Clip Studio Paint官方中文版、Comic Studio官方中文版、Retas官方中文版等众多软硬件工具。">
+    <link rel="stylesheet" href="../../css/reset.css">           
+    <link rel="stylesheet" href="../../css/global.css">   
+    <link rel="stylesheet" href="../../css/17-self-info.css">
+    <link rel="stylesheet" href="../../css/28-new-content-detail.css"> 
+    <link rel="stylesheet" href="../../css/new_style/base.css">
+    <link rel="stylesheet" href="../../css/upload_model/upload.css">
+    <link rel="stylesheet" href="../../css/upload_model/webuploader.css">
+    <link rel="stylesheet" href="../../css/upload_model/cropper.css">
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <a href="" class="logo"></a>
+        <nav>
+            <ul>
+                <li><span><a href="">首页</a></span></li>
+                <li><span><a href="">学习</a></span></li>
+                <li><span><a href="">工具</a></span></li>
+                <li><span><a href="">素材</a></span></li>
+                <li><span><a href="">练习</a></span></li>
+                <li><span><a href="">作品</a></span></li>
+                <li><span><a href="">活动</a></span></li>
+            </ul>
+        </nav>
+        <div class="login-status">
+            <a href=""><img src="" alt=""></a>
+        </div>
+        <div class="search-bar">
+            <form action="" method="get" name="side_search" id="side_search" onsubmit="return check_global_search_form();">
+                <input type="hidden" value="search" name="m">
+                <input type="hidden" value="search" name="c">
+                <input type="hidden" value="search" name="a">
+                <dl class="sim_select">
+                    <input type="hidden" name="search_type" id="searchmodel">
+                    <dt>教程</dt>
+                    <dd>
+                        <p ddvalue="1">教程</p>
+                        <p ddvalue="2">课程</p>
+                        <p ddvalue="3">素材</p>
+                        <p ddvalue="4">练习</p>
+                        <p ddvalue="5">作品</p>
+                    </dd>
+                </dl>
+                <div>
+                    <input type="text" class="input" id="q" name="q" maxlength="20">
+                    <input type="submit" class="btn search_btn" value="">
+                </div>
+            </form>
+        </div>
+    </header>
+    <form action="">
+        <div class="content">
+            <div class="uploadTitle">
+                <h1>发布练习</h1>
+                <span>温馨提示：标识“</span> 
+                <a class="required">●</a>
+                <span>”为必填项，请填写完整后再发布哦~</span>
+            </div>
+
+            <div class="multi-image" id="mulImage_box">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>练习介绍</span>
+                </div>
+                <div class="upIntroBox" id="uploader">
+                    <div class="file-picker-init">
+                        <div id="filePicker" class="filePicker">上传图片</div>
+                        <p class="info0">支持jpg/png/bmp/gif格式，单张图片不超过10M，最多20张图片</p>
+                    </div>
+                    <div class="imgBox">
+                        <ul id="queueList" class="queueList">
+                            <li class="upBox" id="add_Img_Cover">
+                                <div class="upBtn"></div>
+                                <div class="webuploader-pick" style="">
+                                    <p class="info1">点击上传图像</p>
+                                    <p class="info2">支持jpg/png等格式<br>不超过10M</p>
+                                </div>
+                                <div id="upload_Mate_Img" class="min-upload-piker"></div>
+                            </li>
+                            <input type="hidden" name="info[content]" id="content">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="upload-cover" id="upCover_box">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>练习封面</span>
+                    <span class="info"></span>
+                </div>
+                <div class="coverRow">
+                    <div class="cover-prior">
+                        <div class="img-container cropper-bg">
+                            <div class="upCoverBtn-prior">
+                                <div class="upCoverBtn-1"></div>
+                                <input type="file" accept="image/*" class="upCoverBtn-2" title="">
+                                <p>点击上传封面</p>
+                            </div>
+                            <img class="cropper" src="" id="cropperImg" alt="Picture" >
+                        </div>
+                        <div class="re-upload">
+                            <label for="resetUploadImg">重新上传</label>
+                            <input type="file" id="resetUploadImg" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="cover-after">
+                        <div class="img-preview preview-lg" ></div>
+                        <div class="cover-title"></div>
+                        <div class="cover-avatar"></div>
+                        <div class="cover-username"></div>
+                        <div class="cover-pageviews"></div>
+                        <span class="preview-tag">封面预览</span>
+                    </div>
+                </div>  
+            </div>
+            <div class="upload-info">
+                <div class="title-box">
+                    <a class="required">●</a>
+                    <span>练习信息</span>
+                </div>
+                <div class="upload-title">
+                    <label for="upload_title">练习标题：</label>
+                    <input type="text" id="upload_title" class="uploadTitle-input" placeholder="请输入练习标题" >
+                    <span class="txtInput-info">0/30</span>
+                </div>
+                <div class="upload-type">
+                    <label>练习类型：</label>
+                    <select name="" id="course_Type" class="contentType_1">
+                        <option value="0" disabled selected style="color: #cccccc">请选择</option>
+                        <option value="1" >请选我</option>
+                    </select>
+                    <select name="" id="course_Type_Sec" class="contentType_2">
+                        <option value="0" disabled selected style="color: #cccccc">请选择</option>
+                        <option value="1" >请选我</option>
+                    </select>
+                </div>
+                <div class="upload-type">
+                    <label for="course_Software">应用软件：</label>
+                    <select name="" id="course_Software" class="uploadType-chose">
+                        <option disabled selected style="color: #cccccc" value="0">请选择</option>
+                        <option value="优绘">优绘</option>
+                        <option value="CSP系列">CSP系列</option>
+                    </select>
+                </div>
+                <div class="upload-type">
+                    <label for="practice_Difficult">难度系数：</label>
+                    <select name="" id="practice_Difficult" class="uploadType-chose">
+                        <option disabled selected style="color: #cccccc" value="0">请选择</option>
+                        <option value="1">1(入门)</option>
+                        <option value="2">2(入门)</option>
+                        <option value="3">3(初级)</option>
+                        <option value="4">4(初级)</option>
+                        <option value="5">5(中级)</option>
+                        <option value="6">6(中级)</option>
+                        <option value="7">7(高级)</option>
+                        <option value="8">8(高级)</option>
+                        <option value="9">9(大神)</option>
+                        <option value="10">10(大神)</option>
+                    </select>
+                </div>
+
+
+                <div class="upload-tag">
+                    <label for="input_tags">练习标签：</label>
+                    <div class="tagInput-box" id="tags">
+                        <input class="input_content" placeholder="按下回车创建标签" / />
+                        <input type="text" class="input_tags" id="input_tags" name="" value="" />
+                        <p class="tag-txtInput-info">请使用空格或回车创建标签</p>
+                    </div>
+                    <ul class="tag-provide" id="tag_provide">
+                        <li>五官练习</li>
+                        <li>人体姿势练习</li>
+                        <li>背景练习</li>
+                    </ul>
+                </div>
+                <div class="upload-brief">
+                    <label for="">练习简介：</label>
+                    <textarea name="" id="describe_inp" class="describe-inp" placeholder="请输入练习介绍"></textarea>
+                    <span class="txtInput-info">0/280</span>
+                </div>
+            </div>
+            <div class="upload-model-text model-select ">
+                <span class="seld-agree selectd-box seld-agree-btn seld_img"></span>
+                <span class="seld-agree">我已经阅读并接受<a>优动漫内容发布守则</a></span>
+            </div>
+            <span id='sub_Btn' class='uploadButton'>提交发布</span>
+            <div id="__nc" class="sliding">
+                <div id="nc" style="display: none;"></div>
+            </div>
+        </div> 
+        <input type="hidden" id="cover_Img_Src">
+        <input typr="hidden" name="submit_url" id="submit_url">
+        <input type="hidden" name="read_upload_rule" id="read_upload_rule" value="1">
+    </form>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-box">
+            <div class="bottom-qzone" title="优动漫交流群">
+                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=eba9448b4bedd6e105d882143d8ab23d58c951e9532854c3e06bf210251890c3">
+                    <span></span>
+                </a>
+            </div>
+            <div class="bottom-weibo" title="优动漫官微">
+                <a href="http://weibo.com/udongman?topnav=1&wvr=6&topsug=1" target="_blank"><span>官微</span></a>
+            </div>
+            <ul class="bottom-link">
+                <!-- 根据不同的环境，这个栏目ID会有不同  ，对应后台 关于 栏目-->
+                <li><a href="index.php?m=content&c=index&a=lists&catid=53301525">关于我们</a></li>
+                <li class="separate"></li>
+                <li><a href="index.php?m=content&c=index&a=lists&catid=53301528">平台规范</a></li>
+                <li class="separate"></li>
+                <li><a href="index.php?m=feedback&c=index&a=main">联系我们</a></li>
+            </ul>
+            <p> COPYRIGHT&copy;厦门优莱柏网络科技有限公司 版权所有 &nbsp&nbsp&nbsp&nbsp 闽ICP备12010450号-2&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp闽网文[2016]1301-018号 </p>
+        </div>
+    </div>
+    <div class="message-box-wrap" id='upload_Success_Model' style="display: none;">
+        <div class="message-mask"></div>
+        <div class="message-box">
+            <div class="message-box-tit">
+                <a class="message-box-close" id='upload_Close_Suc_Btn'></a>
+                <span>提示</span>
+            </div>
+            <div class="message-box-content">
+                            <p class="center">提交成功，内容审核中~ </p>
+                        </div>
+            <div class="message-box-btn">
+                <div class="btnGroup">
+                    <a class="btn primary" id='add_pub_Continue_Btn'>继续发布</a>
+                    <a class="btn primary" id='pub_Preview_Btn'>立即查看</a>
+                </div>
+            </div>
+            <div class="message-box-assist" style="display: none;">
+                <!-- look for help -->
+                <p>
+                    <span></span>
+                    <a href="" target="_blank" class="help">查看帮助</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script src="js\plugins\webuploader.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="//g.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+<script src="../../js/plugins/require.js" defer async="true" data-main="../../js/upload_model/practiceUpload"></script>
+</body>
+</html>

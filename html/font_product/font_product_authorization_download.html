@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字体订单支付结果页</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/28-new-content-detail.css">
+    <link rel="stylesheet" href="../../css/font_product/font-product.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="font-order-info font-order-result">
+            <p>授权方：厦门优莱柏网络科技有限公司</p>
+            <p>被授权方：<span>李惠</span></p>
+            <p>优动漫平台用户ID：<span>123456</span></p>
+            <p>联系邮箱/电话：<span>xxxxxx</span></p>
+            <p>授权字体：<span>书正黑体/书正楷体/书正宋体</span></p>
+            <p>授权类型：<span>个人/企业/出版方</span></p>
+            <p>授权有效期至：<span>2019-08-25（永久）</span></p>
+            <p>授权书编号：<span>123456</span></p>
+            <p>按如下形式显示</p>
+            <p>该授权允许被授权方将此字体用于以下用途：</p>
+            <p>1.网络用途：主要包含但不限于网络漫画、网站、网店、自媒体、网络宣传品等网络环境下使用</p>
+            <p>2.线下用途：主要包含但不限于宣传页、海报、广告、办公用字、包装、T恤、日历等</p>
+            <p>3、出版印刷用途：主要包含但不限于图书、杂志、报纸等印刷用字</p>
+            <p> 4、影视传媒用途：主要包含但不限于电视台节目、网络视频节目、影视剧、电影等各类媒体播放平台及发行产品</p>
+            <p>除以上授权用途外，被授权方不得将字体用于非本授权书授权用途。（详见授权协议）</p>
+            <p>在被授权方不违反上述内容、遵守中华人民共和国著作权法及其他相关法律规定、并且符合优动漫字体授权协议（授权协议链接）的情况下，授权方将始终担保被授权方所用字体的合法权益不受侵犯，并确定授权确实有效。</p>
+            <p>厦门优莱柏网络科技有限公司</p>
+            <p>2019年8月</p>                                                                
+        </div>
+        <script src="../../js/jquery-1.7.2.min.js"></script>
+        <script src="../../js/plugins/html2canvas.min.js"></script>
+        <script src="../../js/plugins/jspdf.debug.js"></script>
+        <script>
+            window.onload = function(){
+                window.addEventListener('message',function(event){
+                    var canvas = document.createElement("canvas")
+                    canvas.width = $(document).width();
+                    canvas.height = $(document).height();
+                    var opts = {
+                        canvas: canvas,                      
+                        useCORS: true,
+                        scale: 2,
+                        dpi: window.devicePixelRatio * 2
+                    }
+                    html2canvas(document.body,opts).then(function(canvas){   
+                        var pageData = canvas.toDataURL('image/jpeg', 1.0);
+                        var pdf = new jsPDF('', 'pt', 'a4');
+                        pdf.addImage(pageData, 'JPEG', 0, 0, 595.28, 592.28/canvas.width * canvas.height );
+                        pdf.save( '书正商用字体授权书.pdf');
+                    });
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
